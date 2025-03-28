@@ -33,11 +33,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen
-          name='(core)'
-          options={{ headerShown: false }}
-        />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='(core)' />
         <Stack.Screen name='+not-found' />
       </Stack>
       <StatusBar style='auto' />
