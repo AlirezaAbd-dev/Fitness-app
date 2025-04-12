@@ -8,13 +8,13 @@ import image from '@/assets/images/welcome-1.png';
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
+  justifyContent: 'flex-end',
+  paddingHorizontal: 20,
+  paddingVertical: 34,
 });
 
 const StyledImageBackground = styled(ImageBackground, {
   flex: 1,
-  justifyContent: 'flex-end',
-  paddingHorizontal: 20,
-  paddingVertical: 34,
 });
 
 const CardContainer = styled(View, {
@@ -56,8 +56,8 @@ const FooterText = styled(Text, {
 // Component
 const WelcomePage = () => {
   return (
-    <StyledSafeAreaView>
-      <StyledImageBackground source={image}>
+    <StyledImageBackground source={image}>
+      <StyledSafeAreaView>
         <CardContainer>
           <CenteredContent>
             <TitleText>A plan tailored just for you!</TitleText>
@@ -67,8 +67,8 @@ const WelcomePage = () => {
           </CenteredContent>
           <FooterText>Start your journey</FooterText>
         </CardContainer>
-      </StyledImageBackground>
-    </StyledSafeAreaView>
+      </StyledSafeAreaView>
+    </StyledImageBackground>
   );
 };
 
