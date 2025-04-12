@@ -21,7 +21,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    OpenSans: require('../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
   });
 
   useEffect(() => {
@@ -37,18 +37,16 @@ export default function RootLayout() {
   return (
     <TamaguiProvider config={config}>
       <Theme name={colorScheme}>
-        <ThemeProvider
-          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-        >
-          <Stack>
-            <Stack.Screen
-              name='(tabs)'
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen name='+not-found' />
-          </Stack>
-          <StatusBar style='auto' />
-        </ThemeProvider>
+        <Stack initialRouteName='welcome'>
+          <Stack.Screen
+            name='welcome'
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen name='+not-found' />
+        </Stack>
+        <StatusBar style='auto' />
       </Theme>
     </TamaguiProvider>
   );
