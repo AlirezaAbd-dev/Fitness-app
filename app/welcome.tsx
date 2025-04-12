@@ -1,4 +1,4 @@
-import WelcomePage from '@/routes/welcome';
+import WelcomePage from '@/routes/welcome/components';
 
 const Welcome = () => {
   return <WelcomePage />;

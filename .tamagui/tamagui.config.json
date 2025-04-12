@@ -27291,7 +27291,48 @@
   ],
   "nameToPaths": {},
   "tamaguiConfig": {
-    "fonts": {},
+    "fonts": {
+      "OpenSans": {
+        "family": "OpenSans",
+        "size": {
+          "xs": 10,
+          "sm": 12,
+          "md": 14,
+          "lg": 18,
+          "xl": 24
+        },
+        "lineHeight": {
+          "xs": 12,
+          "sm": 16,
+          "md": 20,
+          "lg": 24,
+          "xl": 30
+        },
+        "weight": {
+          "200": "extraLight",
+          "300": "light",
+          "400": "regular",
+          "500": "medium",
+          "600": "semibold",
+          "700": "bold",
+          "800": "extrabold",
+          "900": "black",
+          "xs": "extraLight",
+          "sm": "extraLight",
+          "md": "extraLight",
+          "lg": "extraLight",
+          "xl": "extraLight",
+          "extraLight": "200",
+          "light": "300",
+          "regular": "400",
+          "medium": "500",
+          "semibold": "600",
+          "bold": "700",
+          "extrabold": "800",
+          "black": "900"
+        }
+      }
+    },
     "onlyAllowShorthands": false,
     "fontLanguages": [],
     "animations": {},
