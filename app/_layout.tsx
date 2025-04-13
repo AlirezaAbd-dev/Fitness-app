@@ -48,7 +48,14 @@ export default function RootLayout() {
             name='welcome-2'
             options={{
               headerShown: false,
-              animation: 'slide_from_right',
+              animation: 'simple_push',
+            }}
+          />
+          <Stack.Screen
+            name='welcome-3'
+            options={{
+              headerShown: false,
+              animation: 'simple_push',
             }}
           />
           <Stack.Screen name='+not-found' />

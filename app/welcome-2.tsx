@@ -1,8 +1,8 @@
+import Welcome2Page from '@/routes/welcome/components/welcome_2_page.component';
 import React from 'react';
-import { Text } from 'tamagui';
 
 const Welcome2 = () => {
-  return <Text>Welcom2</Text>;
+  return <Welcome2Page />;
 };
 
 export default Welcome2;
