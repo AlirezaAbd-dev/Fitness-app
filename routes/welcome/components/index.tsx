@@ -1,20 +1,24 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { styled, Text, View } from 'tamagui';
+import { Button, styled, Text, View } from 'tamagui';
+import { ArrowRight } from '@tamagui/lucide-icons';
 
+// @ts-ignore
 import image from '@/assets/images/welcome-1.png';
+import SliderIndicator from './slider_indicator.component';
+import { Link } from 'expo-router';
 
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
-  justifyContent: 'flex-end',
-  paddingHorizontal: 20,
-  paddingVertical: 34,
 });
 
 const StyledImageBackground = styled(ImageBackground, {
   flex: 1,
+  justifyContent: 'flex-end',
+  paddingHorizontal: 20,
+  paddingVertical: 34,
 });
 
 const CardContainer = styled(View, {
@@ -48,16 +52,36 @@ const DescriptionText = styled(Text, {
   paddingHorizontal: 10,
 });
 
-const FooterText = styled(Text, {
+const Footer = styled(View, {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+});
+
+const NextButton = styled(View, {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: 8,
+  paddingHorizontal: 48,
+  paddingVertical: 16,
+  backgroundColor: '#201E1E',
+  borderRadius: 16,
+});
+
+const NextButtonText = styled(Text, {
   fontFamily: '$OpenSans',
-  fontSize: 14,
+  fontSize: 16,
+  color: '$white',
+  fontWeight: 700,
 });
 
 // Component
 const WelcomePage = () => {
   return (
-    <StyledImageBackground source={image}>
-      <StyledSafeAreaView>
+    <StyledSafeAreaView>
+      <StyledImageBackground source={image}>
         <CardContainer>
           <CenteredContent>
             <TitleText>A plan tailored just for you!</TitleText>
@@ -65,10 +89,24 @@ const WelcomePage = () => {
               Get a workout plan customized to your level, goals, and body type.
             </DescriptionText>
           </CenteredContent>
-          <FooterText>Start your journey</FooterText>
+          <Footer>
+            <SliderIndicator
+              numberOfSlides={3}
+              activeSlider={1}
+            />
+            <Link
+              href={'/welcome-2'}
+              asChild
+            >
+              <NextButton>
+                <NextButtonText>Next</NextButtonText>
+                <ArrowRight color={'white'} />
+              </NextButton>
+            </Link>
+          </Footer>
         </CardContainer>
-      </StyledSafeAreaView>
-    </StyledImageBackground>
+      </StyledImageBackground>
+    </StyledSafeAreaView>
   );
 };
 

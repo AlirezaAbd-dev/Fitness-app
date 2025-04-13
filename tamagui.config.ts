@@ -2,49 +2,14 @@ import { createFont, createTamagui } from '@tamagui/core';
 
 const fonts = createFont({
   family: 'OpenSans',
-  size: {
-    xs: 10,
-    sm: 12,
-    md: 14,
-    lg: 18,
-    xl: 24,
-  },
-  lineHeight: {
-    xs: 12,
-    sm: 16,
-    md: 20,
-    lg: 24,
-    xl: 30,
-  },
-  weight: {
-    '200': 'extraLight',
-    '300': 'light',
-    '400': 'regular',
-    '500': 'medium',
-    '600': 'semibold',
-    '700': 'bold',
-    '800': 'extrabold',
-    '900': 'black',
-    extraLight: '200',
-    light: '300',
-    regular: '400',
-    medium: '500',
-    semibold: '600',
-    bold: '700',
-    extrabold: '800',
-    black: '900',
-  },
+  size: { sm: 12, md: 14, lg: 16 },
 });
 
 const config = createTamagui({
   // act like CSS variables at your root
   tokens: {
-    // width="$sm"
     size: { sm: 8, md: 12, lg: 20 },
-    // margin="$-sm"
     space: { sm: 4, md: 8, lg: 12, xl: 20 },
-    // radius="$none"
-    radius: { none: 0, sm: 3 },
     color: { white: '#fff', black: '#000' },
   },
   fonts: {

@@ -44,9 +44,16 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name='welcome-2'
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
           <Stack.Screen name='+not-found' />
         </Stack>
-        <StatusBar style='auto' />
+        <StatusBar style='dark' />
       </Theme>
     </TamaguiProvider>
   );

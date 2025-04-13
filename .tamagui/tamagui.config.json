@@ -27295,41 +27295,9 @@
       "OpenSans": {
         "family": "OpenSans",
         "size": {
-          "xs": 10,
           "sm": 12,
           "md": 14,
-          "lg": 18,
-          "xl": 24
-        },
-        "lineHeight": {
-          "xs": 12,
-          "sm": 16,
-          "md": 20,
-          "lg": 24,
-          "xl": 30
-        },
-        "weight": {
-          "200": "extraLight",
-          "300": "light",
-          "400": "regular",
-          "500": "medium",
-          "600": "semibold",
-          "700": "bold",
-          "800": "extrabold",
-          "900": "black",
-          "xs": "extraLight",
-          "sm": "extraLight",
-          "md": "extraLight",
-          "lg": "extraLight",
-          "xl": "extraLight",
-          "extraLight": "200",
-          "light": "300",
-          "regular": "400",
-          "medium": "500",
-          "semibold": "600",
-          "bold": "700",
-          "extrabold": "800",
-          "black": "900"
+          "lg": 16
         }
       }
     },
@@ -27404,22 +27372,6 @@
           "key": "$xl",
           "name": "c-space-xl",
           "val": 20,
-          "variable": ""
-        }
-      },
-      "radius": {
-        "none": {
-          "isVar": true,
-          "key": "$none",
-          "name": "c-radius-none",
-          "val": 0,
-          "variable": ""
-        },
-        "sm": {
-          "isVar": true,
-          "key": "$sm",
-          "name": "c-radius-sm",
-          "val": 3,
           "variable": ""
         }
       },
@@ -27517,20 +27469,6 @@
         "key": "$xl",
         "name": "c-space-xl",
         "val": 20,
-        "variable": ""
-      },
-      "$radius.none": {
-        "isVar": true,
-        "key": "$none",
-        "name": "c-radius-none",
-        "val": 0,
-        "variable": ""
-      },
-      "$radius.sm": {
-        "isVar": true,
-        "key": "$sm",
-        "name": "c-radius-sm",
-        "val": 3,
         "variable": ""
       },
       "$color.white": {
