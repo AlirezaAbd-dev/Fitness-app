@@ -1,7 +1,23 @@
 import { createFont, createTamagui } from '@tamagui/core';
 
-const fonts = createFont({
+const opensansReqular = createFont({
   family: 'OpenSans',
+  size: { sm: 12, md: 14, lg: 16 },
+});
+const opensansBold = createFont({
+  family: 'OpenSans-Bold',
+  size: { sm: 12, md: 14, lg: 16 },
+});
+const opensansSemiBold = createFont({
+  family: 'OpenSans-SemiBold',
+  size: { sm: 12, md: 14, lg: 16 },
+});
+const opensansLight = createFont({
+  family: 'OpenSans-Light',
+  size: { sm: 12, md: 14, lg: 16 },
+});
+const opensansExtraBold = createFont({
+  family: 'OpenSans-ExtraBold',
   size: { sm: 12, md: 14, lg: 16 },
 });
 
@@ -13,7 +29,11 @@ const config = createTamagui({
     color: { white: '#fff', black: '#000' },
   },
   fonts: {
-    OpenSans: fonts,
+    OpenSans: opensansReqular,
+    'OpenSans-Bold': opensansBold,
+    'OpenSans-SemiBold': opensansSemiBold,
+    'OpenSans-Light': opensansLight,
+    'OpenSans-ExtraBold': opensansExtraBold,
   },
   themes: {
     light: {

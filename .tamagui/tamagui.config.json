@@ -27299,6 +27299,38 @@
           "md": 14,
           "lg": 16
         }
+      },
+      "OpenSans-Bold": {
+        "family": "OpenSans-Bold",
+        "size": {
+          "sm": 12,
+          "md": 14,
+          "lg": 16
+        }
+      },
+      "OpenSans-SemiBold": {
+        "family": "OpenSans-SemiBold",
+        "size": {
+          "sm": 12,
+          "md": 14,
+          "lg": 16
+        }
+      },
+      "OpenSans-Light": {
+        "family": "OpenSans-Light",
+        "size": {
+          "sm": 12,
+          "md": 14,
+          "lg": 16
+        }
+      },
+      "OpenSans-ExtraBold": {
+        "family": "OpenSans-ExtraBold",
+        "size": {
+          "sm": 12,
+          "md": 14,
+          "lg": 16
+        }
       }
     },
     "onlyAllowShorthands": false,

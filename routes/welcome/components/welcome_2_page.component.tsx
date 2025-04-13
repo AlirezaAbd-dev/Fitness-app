@@ -39,9 +39,8 @@ const CenteredContent = styled(View, {
 });
 
 const TitleText = styled(Text, {
-  fontFamily: '$OpenSans',
+  fontFamily: '$OpenSans-SemiBold',
   fontSize: 18,
-  fontWeight: 'bold',
 });
 
 const DescriptionText = styled(Text, {
