@@ -36,24 +36,20 @@ export default function RootLayout() {
   return (
     <TamaguiProvider config={config}>
       <Theme name={colorScheme}>
-        <Stack initialRouteName='welcome'>
-          <Stack.Screen
-            name='welcome'
-            options={{
-              headerShown: false,
-            }}
-          />
+        <Stack
+          initialRouteName='welcome'
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name='welcome' />
           <Stack.Screen
             name='welcome-2'
             options={{
-              headerShown: false,
               animation: 'simple_push',
             }}
           />
           <Stack.Screen
             name='welcome-3'
             options={{
-              headerShown: false,
               animation: 'simple_push',
             }}
           />
