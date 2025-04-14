@@ -1,8 +1,13 @@
 import React from 'react';
-import { Text } from 'tamagui';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { styled, Text } from 'tamagui';
+
+const StyledSafeAreaView = styled(SafeAreaView, {
+  flex: 1,
+});
 
 const Question1 = () => {
-  return <Text>Test1</Text>;
+  return <StyledSafeAreaView>Test1</StyledSafeAreaView>;
 };
 
 export default Question1;

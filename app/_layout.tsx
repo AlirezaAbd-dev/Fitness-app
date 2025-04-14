@@ -53,6 +53,19 @@ export default function RootLayout() {
               animation: 'simple_push',
             }}
           />
+          <Stack.Screen
+            name='(questions)'
+            options={{
+              animation: 'simple_push',
+            }}
+          />
+          <Stack.Screen
+            name='get-started'
+            options={{
+              animation: 'simple_push',
+            }}
+          />
+          <Stack.Screen name='login' />
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='dark' />
