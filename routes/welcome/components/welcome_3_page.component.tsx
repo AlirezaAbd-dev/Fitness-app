@@ -103,7 +103,7 @@ const Welcome3Page = () => {
               activeSlider={3}
             />
             <Link
-              href={'/(questions)/question-1'}
+              href={'/get-started'}
               asChild
             >
               <NextButton>
