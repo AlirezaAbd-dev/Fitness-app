@@ -27,8 +27,6 @@ const config = createTamagui({
     size: { sm: 8, md: 12, lg: 20 },
     space: { sm: 4, md: 8, lg: 12, xl: 20 },
     color: {
-      white: '#fff',
-      black: '#000',
       // Brand shades
       'brand-25': '#FBFBFB',
       'brand-50': '#F0F0F0',
@@ -133,6 +131,11 @@ const config = createTamagui({
       'warning-900': '#836702',
       'warning-950': '#5C4800',
       'warning-1000': '#3D3000',
+
+      // Other colors
+      background: '#141414',
+      white: '#fff',
+      black: '#000',
     },
   },
   fonts: {

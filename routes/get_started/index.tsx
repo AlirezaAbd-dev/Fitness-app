@@ -5,6 +5,7 @@ import CaloriesCard from './components/calories_card.component';
 import DrinkWaterCard from './components/drink_water_card.component';
 import TrainingCard from './components/training_card.component';
 import { Link } from 'expo-router';
+import CustomButton from '@/components/ui/customButton';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
@@ -49,23 +50,6 @@ const DescriptionText = styled(Text, {
   marginTop: 8,
   lineHeight: 26,
   marginRight: 16,
-});
-
-const GetStartButton = styled(View, {
-  width: '100%',
-  height: 48,
-  backgroundColor: '$text-25',
-  borderRadius: 16,
-  alignItems: 'center',
-  justifyContent: 'center',
-});
-
-const GetStartButtonText = styled(Text, {
-  fontSize: 16,
-  color: '#141414',
-  fontFamily: '$OpenSans-SemiBold',
-  textAlign: 'center',
-  lineHeight: 48,
 });
 
 const LoginText = styled(Text, {
@@ -129,9 +113,15 @@ const GetStartedPage = () => {
             </DescriptionText>
           </View>
           <View>
-            <GetStartButton>
-              <GetStartButtonText>Get start</GetStartButtonText>
-            </GetStartButton>
+            <Link
+              href={'/question-1'}
+              asChild
+            >
+              <CustomButton
+                text='Get start'
+                size='medium'
+              />
+            </Link>
             <LoginText>
               Already have an account?{' '}
               <Link

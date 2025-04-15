@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 import image from '@/assets/images/welcome-3.png';
 import SliderIndicator from './slider_indicator.component';
 import { Link, useNavigation } from 'expo-router';
+import CustomButton from '@/components/ui/customButton';
 
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -106,10 +107,20 @@ const Welcome3Page = () => {
               href={'/get-started'}
               asChild
             >
-              <NextButton>
-                <NextButtonText>Next</NextButtonText>
-                <ArrowRight color={'white'} />
-              </NextButton>
+              <CustomButton
+                text='Next'
+                variant='secondary'
+                size='large'
+                icon={
+                  <ArrowRight
+                    color={'$text-25'}
+                    width={24}
+                    height={24}
+                  />
+                }
+                iconPosition='right'
+                width={166}
+              />
             </Link>
           </Footer>
         </CardContainer>

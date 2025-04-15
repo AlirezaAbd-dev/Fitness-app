@@ -1,4 +1,5 @@
 import CheckboxWithLabel from '@/components/ui/checkbox';
+import CustomButton from '@/components/ui/customButton';
 import { KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link } from 'expo-router';
 import React from 'react';
@@ -111,9 +112,12 @@ const LoginForm = () => {
           <ForgetPasswordText>Forget password?</ForgetPasswordText>
         </Link>
       </LoginOptionsContainer>
-      <SignInButton>
-        <SignInButtonText>Sign in</SignInButtonText>
-      </SignInButton>
+      <View marginTop={62}>
+        <CustomButton
+          text='Sign in'
+          size='medium'
+        />
+      </View>
     </Section>
   );
 };
