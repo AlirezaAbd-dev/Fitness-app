@@ -5,6 +5,7 @@ import QuestionHeader from '../_components/question_header.component';
 import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
 import QuestionCheckboxItem from '../_components/question_checkbox_item.component';
+import QuestionRadioItem from '../_components/question_radio_item.component';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
@@ -13,50 +14,21 @@ const StyledSafeAreaView = styled(SafeAreaView, {
 const GOALS = [
   {
     name: 'Beginner',
+    description: 'New to working out or coming back after a long break.',
   },
   {
-    name: 'Gain muscle',
+    name: 'Intermediate',
+    description: 'Work out regularly and familiar with basic exercises.',
   },
   {
-    name: 'BegiGet fitter / tone upnner',
+    name: 'Advanced',
+    description: 'Train consistently, comfortable with advanced routines.',
   },
   {
-    name: 'Maintain current shape',
-  },
-  {
-    name: 'Increase strength',
-  },
-  {
-    name: 'Improve endurance',
-  },
-  {
-    name: 'Improve flexibility / mobility',
-  },
-  {
-    name: 'Post-injury recovery',
-  },
-  {
-    name: 'Improve overall health',
+    name: 'Not sure / I’ll decide later',
+    description: 'Help me choose based on my goals.',
   },
 ] as const;
-
-const Section = styled(View, {
-  flex: 1,
-  width: '100%',
-  padding: 20,
-  backgroundColor: '#141414',
-  paddingBottom: 50,
-});
-
-const MainContainer = styled(View, {
-  flex: 1,
-  marginTop: 24,
-  justifyContent: 'space-between',
-});
-
-const QuestionSection = styled(View, {
-  flex: 1,
-});
 
 const QuestionTitle = styled(Text, {
   fontSize: 16,
@@ -105,9 +77,10 @@ const Question3Page = () => {
               showsVerticalScrollIndicator={false}
             >
               {GOALS.map((g) => (
-                <QuestionCheckboxItem
+                <QuestionRadioItem
                   key={g.name}
                   title={g.name}
+                  description={g.description}
                   isActive={g.name === selectedItem}
                   onPress={() => setSelectedItem(g.name)}
                 />
