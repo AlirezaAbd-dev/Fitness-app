@@ -13,6 +13,14 @@ const QuestionLayout = () => {
         name='question-1'
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name='question-2'
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='question-3'
+        options={{ headerShown: false }}
+      />
     </Stack>
   );
 };

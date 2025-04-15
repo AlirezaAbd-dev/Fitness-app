@@ -27294,43 +27294,23 @@
     "fonts": {
       "OpenSans": {
         "family": "OpenSans",
-        "size": {
-          "sm": 12,
-          "md": 14,
-          "lg": 16
-        }
+        "size": {}
       },
       "OpenSans-Bold": {
         "family": "OpenSans-Bold",
-        "size": {
-          "sm": 12,
-          "md": 14,
-          "lg": 16
-        }
+        "size": {}
       },
       "OpenSans-SemiBold": {
         "family": "OpenSans-SemiBold",
-        "size": {
-          "sm": 12,
-          "md": 14,
-          "lg": 16
-        }
+        "size": {}
       },
       "OpenSans-Light": {
         "family": "OpenSans-Light",
-        "size": {
-          "sm": 12,
-          "md": 14,
-          "lg": 16
-        }
+        "size": {}
       },
       "OpenSans-ExtraBold": {
         "family": "OpenSans-ExtraBold",
-        "size": {
-          "sm": 12,
-          "md": 14,
-          "lg": 16
-        }
+        "size": {}
       }
     },
     "onlyAllowShorthands": false,
@@ -27354,74 +27334,9 @@
       }
     },
     "tokens": {
-      "size": {
-        "sm": {
-          "isVar": true,
-          "key": "$sm",
-          "name": "c-size-sm",
-          "val": 8,
-          "variable": ""
-        },
-        "md": {
-          "isVar": true,
-          "key": "$md",
-          "name": "c-size-md",
-          "val": 12,
-          "variable": ""
-        },
-        "lg": {
-          "isVar": true,
-          "key": "$lg",
-          "name": "c-size-lg",
-          "val": 20,
-          "variable": ""
-        }
-      },
-      "space": {
-        "sm": {
-          "isVar": true,
-          "key": "$sm",
-          "name": "c-space-sm",
-          "val": 4,
-          "variable": ""
-        },
-        "md": {
-          "isVar": true,
-          "key": "$md",
-          "name": "c-space-md",
-          "val": 8,
-          "variable": ""
-        },
-        "lg": {
-          "isVar": true,
-          "key": "$lg",
-          "name": "c-space-lg",
-          "val": 12,
-          "variable": ""
-        },
-        "xl": {
-          "isVar": true,
-          "key": "$xl",
-          "name": "c-space-xl",
-          "val": 20,
-          "variable": ""
-        }
-      },
+      "size": {},
+      "space": {},
       "color": {
-        "white": {
-          "isVar": true,
-          "key": "$white",
-          "name": "c-color-white",
-          "val": "#fff",
-          "variable": ""
-        },
-        "black": {
-          "isVar": true,
-          "key": "$black",
-          "name": "c-color-black",
-          "val": "#000",
-          "variable": ""
-        },
         "brand-25": {
           "isVar": true,
           "key": "$brand-25",
@@ -28058,6 +27973,27 @@
           "name": "c-color-warning-1000",
           "val": "#3D3000",
           "variable": ""
+        },
+        "background": {
+          "isVar": true,
+          "key": "$background",
+          "name": "c-color-background",
+          "val": "#141414",
+          "variable": ""
+        },
+        "white": {
+          "isVar": true,
+          "key": "$white",
+          "name": "c-color-white",
+          "val": "#fff",
+          "variable": ""
+        },
+        "black": {
+          "isVar": true,
+          "key": "$black",
+          "name": "c-color-black",
+          "val": "#000",
+          "variable": ""
         }
       }
     },
@@ -28091,69 +28027,6 @@
     "getNewCSS": "Function",
     "fontSizeTokens": {},
     "specificTokens": {
-      "$size.sm": {
-        "isVar": true,
-        "key": "$sm",
-        "name": "c-size-sm",
-        "val": 8,
-        "variable": ""
-      },
-      "$size.md": {
-        "isVar": true,
-        "key": "$md",
-        "name": "c-size-md",
-        "val": 12,
-        "variable": ""
-      },
-      "$size.lg": {
-        "isVar": true,
-        "key": "$lg",
-        "name": "c-size-lg",
-        "val": 20,
-        "variable": ""
-      },
-      "$space.sm": {
-        "isVar": true,
-        "key": "$sm",
-        "name": "c-space-sm",
-        "val": 4,
-        "variable": ""
-      },
-      "$space.md": {
-        "isVar": true,
-        "key": "$md",
-        "name": "c-space-md",
-        "val": 8,
-        "variable": ""
-      },
-      "$space.lg": {
-        "isVar": true,
-        "key": "$lg",
-        "name": "c-space-lg",
-        "val": 12,
-        "variable": ""
-      },
-      "$space.xl": {
-        "isVar": true,
-        "key": "$xl",
-        "name": "c-space-xl",
-        "val": 20,
-        "variable": ""
-      },
-      "$color.white": {
-        "isVar": true,
-        "key": "$white",
-        "name": "c-color-white",
-        "val": "#fff",
-        "variable": ""
-      },
-      "$color.black": {
-        "isVar": true,
-        "key": "$black",
-        "name": "c-color-black",
-        "val": "#000",
-        "variable": ""
-      },
       "$color.brand-25": {
         "isVar": true,
         "key": "$brand-25",
@@ -28789,6 +28662,27 @@
         "key": "$warning-1000",
         "name": "c-color-warning-1000",
         "val": "#3D3000",
+        "variable": ""
+      },
+      "$color.background": {
+        "isVar": true,
+        "key": "$background",
+        "name": "c-color-background",
+        "val": "#141414",
+        "variable": ""
+      },
+      "$color.white": {
+        "isVar": true,
+        "key": "$white",
+        "name": "c-color-white",
+        "val": "#fff",
+        "variable": ""
+      },
+      "$color.black": {
+        "isVar": true,
+        "key": "$black",
+        "name": "c-color-black",
+        "val": "#000",
         "variable": ""
       }
     },

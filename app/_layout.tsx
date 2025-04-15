@@ -37,7 +37,7 @@ export default function RootLayout() {
     <TamaguiProvider config={config}>
       <Theme name={colorScheme}>
         <Stack
-          initialRouteName='welcome'
+          initialRouteName='(questions)'
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name='welcome' />

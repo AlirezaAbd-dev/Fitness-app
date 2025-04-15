@@ -82,6 +82,7 @@ const Question1Page = () => {
             <Genders>
               {GENDERS.map((g) => (
                 <GenderItem
+                  key={g.name}
                   borderWidth={g.name === selectedGender ? 0.5 : 0}
                   borderColor={
                     g.name === selectedGender ? '#E1F411' : 'transparent'
@@ -99,6 +100,9 @@ const Question1Page = () => {
             size='medium'
             variant={!!selectedGender ? 'primary' : 'primary-disabled'}
             disabled={!!selectedGender ? false : true}
+            onPress={() => {
+              router.push('/question-2');
+            }}
           />
         </MainContainer>
       </Section>

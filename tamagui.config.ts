@@ -2,30 +2,30 @@ import { createFont, createTamagui } from '@tamagui/core';
 
 const opensansReqular = createFont({
   family: 'OpenSans',
-  size: { sm: 12, md: 14, lg: 16 },
+  size: {},
 });
 const opensansBold = createFont({
   family: 'OpenSans-Bold',
-  size: { sm: 12, md: 14, lg: 16 },
+  size: {},
 });
 const opensansSemiBold = createFont({
   family: 'OpenSans-SemiBold',
-  size: { sm: 12, md: 14, lg: 16 },
+  size: {},
 });
 const opensansLight = createFont({
   family: 'OpenSans-Light',
-  size: { sm: 12, md: 14, lg: 16 },
+  size: {},
 });
 const opensansExtraBold = createFont({
   family: 'OpenSans-ExtraBold',
-  size: { sm: 12, md: 14, lg: 16 },
+  size: {},
 });
 
 const config = createTamagui({
   // act like CSS variables at your root
   tokens: {
-    size: { sm: 8, md: 12, lg: 20 },
-    space: { sm: 4, md: 8, lg: 12, xl: 20 },
+    size: {},
+    space: {},
     color: {
       // Brand shades
       'brand-25': '#FBFBFB',
