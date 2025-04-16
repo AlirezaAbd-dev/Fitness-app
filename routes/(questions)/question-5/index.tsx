@@ -1,55 +1,42 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView, styled, Text, View, YStack } from 'tamagui';
+import { YStack, styled, Text } from 'tamagui';
 import QuestionHeader from '../_components/question_header.component';
 import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
-import QuestionCheckboxItem from '../_components/question_checkbox_item.component';
+import { Calendar } from '@tamagui/lucide-icons';
+import { SelectInput } from '@/components/ui/selectInput';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
 });
 
-const GOALS = [
-  {
-    name: 'Beginner',
-  },
-  {
-    name: 'Gain muscle',
-  },
-  {
-    name: 'BegiGet fitter / tone upnner',
-  },
-  {
-    name: 'Maintain current shape',
-  },
-  {
-    name: 'Increase strength',
-  },
-  {
-    name: 'Improve endurance',
-  },
-  {
-    name: 'Improve flexibility / mobility',
-  },
-  {
-    name: 'Post-injury recovery',
-  },
-  {
-    name: 'Improve overall health',
-  },
-] as const;
+const DAYS = [
+  '1 day',
+  '2 days',
+  '3 days',
+  '4 days',
+  '5 days',
+  '6 days',
+  '7 days',
+];
 
 const QuestionTitle = styled(Text, {
   fontSize: 16,
+  lineHeight: 26,
   fontFamily: '$OpenSans-Bold',
   color: '$text-25',
 });
 
-type GenderType = (typeof GOALS)[number]['name'];
+const DaysInWeekText = styled(Text, {
+  fontFamily: '$OpenSans',
+  fontSize: 14,
+  color: '$text-25',
+  marginTop: 12,
+});
 
 const Question5Page = () => {
-  const [selectedItem, setSelectedItem] = useState<GenderType[]>([]);
+  const [selectedDays, setSelectedDays] = useState<string>('');
   const router = useRouter();
 
   return (
@@ -61,9 +48,9 @@ const Question5Page = () => {
       >
         <QuestionHeader
           allPages={8}
-          currentPage={2}
+          currentPage={5}
           title='Goal'
-          progress={24}
+          progress={63}
           onBackPress={() => router.back()}
         />
 
@@ -72,55 +59,33 @@ const Question5Page = () => {
           marginTop={24}
           gap={24}
         >
-          <QuestionTitle>What's your main fitness goal?</QuestionTitle>
+          <QuestionTitle>
+            How many days a week can you commit to working out?
+          </QuestionTitle>
 
-          {/* Scrollable content area */}
-          <YStack
-            flex={1}
-            gap={16}
-          >
-            <ScrollView
-              contentContainerStyle={{
-                paddingBottom: 20,
-                gap: 16,
-              }}
-              showsVerticalScrollIndicator={false}
-            >
-              {GOALS.map((g) => (
-                <QuestionCheckboxItem
-                  key={g.name}
-                  title={g.name}
-                  isActive={
-                    selectedItem ? selectedItem.includes(g.name) : false
-                  }
-                  onPress={() =>
-                    setSelectedItem((prev) => {
-                      const findIndex = prev.findIndex((p) => p === g.name);
-
-                      if (findIndex === -1) {
-                        prev.push(g.name);
-                      } else {
-                        prev.splice(findIndex, 1);
-                      }
-
-                      return [...prev];
-                    })
-                  }
-                />
-              ))}
-            </ScrollView>
-          </YStack>
-
-          <CustomButton
-            text='Next'
-            size='medium'
-            variant={selectedItem.length > 0 ? 'primary' : 'primary-disabled'}
-            disabled={selectedItem.length === 0}
-            onPress={() => {
-              router.push('/question-3');
-            }}
+          <DaysInWeekText>Days a week</DaysInWeekText>
+          <SelectInput
+            options={DAYS}
+            value={selectedDays}
+            onValueChange={setSelectedDays}
+            placeholder='Select days'
+            icon={
+              <Calendar
+                width={32}
+                height={24}
+                color='$neutral-700'
+              />
+            }
           />
         </YStack>
+
+        <CustomButton
+          text='Next'
+          size='medium'
+          variant={selectedDays ? 'primary' : 'primary-disabled'}
+          disabled={!selectedDays}
+          onPress={() => router.push('/question-6')}
+        />
       </YStack>
     </StyledSafeAreaView>
   );

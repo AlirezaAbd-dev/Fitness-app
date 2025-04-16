@@ -1,7 +1,8 @@
+import Question5Page from '@/routes/(questions)/question-5';
 import React from 'react';
 
 const Question5 = () => {
-  return <div>Question5</div>;
+  return <Question5Page />;
 };
 
 export default Question5;

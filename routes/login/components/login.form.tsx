@@ -53,24 +53,6 @@ const ForgetPasswordText = styled(Text, {
   color: '#6B9FFF',
 });
 
-const SignInButton = styled(View, {
-  width: '100%',
-  height: 48,
-  backgroundColor: '$text-25',
-  borderRadius: 16,
-  alignItems: 'center',
-  justifyContent: 'center',
-  marginTop: 62,
-});
-
-const SignInButtonText = styled(Text, {
-  fontSize: 16,
-  color: '#141414',
-  fontFamily: '$OpenSans-SemiBold',
-  textAlign: 'center',
-  lineHeight: 48,
-});
-
 const LoginForm = () => {
   return (
     <Section>

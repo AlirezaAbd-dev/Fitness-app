@@ -1,6 +1,6 @@
 import { Check } from '@tamagui/lucide-icons';
 import React from 'react';
-import { styled, Text, View } from 'tamagui';
+import { styled, Text, View, XStack } from 'tamagui';
 
 type Props = {
   title: string;
@@ -8,11 +8,11 @@ type Props = {
   onPress?: () => void;
 };
 
-const Item = styled(View, {
-  flexDirection: 'row',
+const Item = styled(XStack, {
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
+  gap: 12,
   padding: 12,
   borderWidth: 0.5,
   borderRadius: 16,
@@ -32,8 +32,11 @@ const Item = styled(View, {
 });
 
 const Title = styled(Text, {
+  flex: 1, // Allows text to take available space
   fontSize: 14,
   fontFamily: '$OpenSans-SemiBold',
+  lineHeight: 24,
+  flexWrap: 'wrap', // Ensures text wraps to next line
   variants: {
     isActive: {
       true: {
