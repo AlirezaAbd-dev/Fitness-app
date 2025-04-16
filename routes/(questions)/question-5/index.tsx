@@ -5,7 +5,6 @@ import QuestionHeader from '../_components/question_header.component';
 import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
 import QuestionCheckboxItem from '../_components/question_checkbox_item.component';
-import QuestionRadioItem from '../_components/question_radio_item.component';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
@@ -14,19 +13,30 @@ const StyledSafeAreaView = styled(SafeAreaView, {
 const GOALS = [
   {
     name: 'Beginner',
-    description: 'New to working out or coming back after a long break.',
   },
   {
-    name: 'Intermediate',
-    description: 'Work out regularly and familiar with basic exercises.',
+    name: 'Gain muscle',
   },
   {
-    name: 'Advanced',
-    description: 'Train consistently, comfortable with advanced routines.',
+    name: 'BegiGet fitter / tone upnner',
   },
   {
-    name: 'Not sure / I’ll decide later',
-    description: 'Help me choose based on my goals.',
+    name: 'Maintain current shape',
+  },
+  {
+    name: 'Increase strength',
+  },
+  {
+    name: 'Improve endurance',
+  },
+  {
+    name: 'Improve flexibility / mobility',
+  },
+  {
+    name: 'Post-injury recovery',
+  },
+  {
+    name: 'Improve overall health',
   },
 ] as const;
 
@@ -38,8 +48,8 @@ const QuestionTitle = styled(Text, {
 
 type GenderType = (typeof GOALS)[number]['name'];
 
-const Question3Page = () => {
-  const [selectedItem, setSelectedItem] = useState<GenderType>();
+const Question5Page = () => {
+  const [selectedItem, setSelectedItem] = useState<GenderType[]>([]);
   const router = useRouter();
 
   return (
@@ -51,18 +61,18 @@ const Question3Page = () => {
       >
         <QuestionHeader
           allPages={8}
-          currentPage={3}
+          currentPage={2}
           title='Goal'
-          progress={36}
+          progress={24}
           onBackPress={() => router.back()}
         />
 
         <YStack
           flex={1}
           marginTop={24}
-          space={24}
+          gap={24}
         >
-          <QuestionTitle>Choose your fitness level? </QuestionTitle>
+          <QuestionTitle>What's your main fitness goal?</QuestionTitle>
 
           {/* Scrollable content area */}
           <YStack
@@ -77,12 +87,25 @@ const Question3Page = () => {
               showsVerticalScrollIndicator={false}
             >
               {GOALS.map((g) => (
-                <QuestionRadioItem
+                <QuestionCheckboxItem
                   key={g.name}
                   title={g.name}
-                  description={g.description}
-                  isActive={g.name === selectedItem}
-                  onPress={() => setSelectedItem(g.name)}
+                  isActive={
+                    selectedItem ? selectedItem.includes(g.name) : false
+                  }
+                  onPress={() =>
+                    setSelectedItem((prev) => {
+                      const findIndex = prev.findIndex((p) => p === g.name);
+
+                      if (findIndex === -1) {
+                        prev.push(g.name);
+                      } else {
+                        prev.splice(findIndex, 1);
+                      }
+
+                      return [...prev];
+                    })
+                  }
                 />
               ))}
             </ScrollView>
@@ -91,10 +114,10 @@ const Question3Page = () => {
           <CustomButton
             text='Next'
             size='medium'
-            variant={selectedItem ? 'primary' : 'primary-disabled'}
-            disabled={!selectedItem}
+            variant={selectedItem.length > 0 ? 'primary' : 'primary-disabled'}
+            disabled={selectedItem.length === 0}
             onPress={() => {
-              router.push('/question-4');
+              router.push('/question-3');
             }}
           />
         </YStack>
@@ -103,4 +126,4 @@ const Question3Page = () => {
   );
 };
 
-export default Question3Page;
+export default Question5Page;

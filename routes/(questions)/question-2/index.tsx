@@ -40,24 +40,6 @@ const GOALS = [
   },
 ] as const;
 
-const Section = styled(View, {
-  flex: 1,
-  width: '100%',
-  padding: 20,
-  backgroundColor: '#141414',
-  paddingBottom: 50,
-});
-
-const MainContainer = styled(View, {
-  flex: 1,
-  marginTop: 24,
-  justifyContent: 'space-between',
-});
-
-const QuestionSection = styled(View, {
-  flex: 1,
-});
-
 const QuestionTitle = styled(Text, {
   fontSize: 16,
   fontFamily: '$OpenSans-Bold',
