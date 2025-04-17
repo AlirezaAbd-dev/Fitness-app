@@ -125,7 +125,7 @@ const GetStartedPage = () => {
             <LoginText>
               Already have an account?{' '}
               <Link
-                href={'/login'}
+                href={'/auth/login'}
                 asChild
               >
                 <LoginLink>Login</LoginLink>

@@ -66,7 +66,7 @@ const Welcome2Page = () => {
 
   const { setShouldBlock } = useInterceptBackHandler({
     onBack: () => {
-      router.replace('/welcome');
+      router.replace('/welcome/welcome');
     },
   });
 
@@ -76,7 +76,7 @@ const Welcome2Page = () => {
         <ArrowLeft
           color={'white'}
           onTouchStart={() => {
-            router.replace('/welcome');
+            router.replace('/welcome/welcome');
           }}
         />
         <CardContainer>
@@ -93,7 +93,7 @@ const Welcome2Page = () => {
               activeSlider={2}
             />
             <Link
-              href={'/welcome-3'}
+              href={'/welcome/welcome-3'}
               asChild
               replace
             >
@@ -112,7 +112,7 @@ const Welcome2Page = () => {
                 width={166}
                 onPress={() => {
                   setShouldBlock(false);
-                  router.replace('/welcome-3');
+                  router.replace('/welcome/welcome-3');
                 }}
               />
             </Link>

@@ -31,7 +31,7 @@ export default function RootLayout() {
   useEffect(() => {
     const prepare = async () => {
       const hasSeenWelcome = await AsyncStorage.getItem('hasSeenWelcome');
-      setInitialRoute(hasSeenWelcome ? 'get-started' : 'welcome');
+      setInitialRoute(hasSeenWelcome ? 'get-started' : 'welcome/welcome');
       setAppReady(true);
     };
 
@@ -57,13 +57,13 @@ export default function RootLayout() {
           initialRouteName={initialRoute}
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name='welcome' />
+          <Stack.Screen name='welcome/welcome' />
           <Stack.Screen
-            name='welcome-2'
+            name='welcome/welcome-2'
             options={{ animation: 'simple_push' }}
           />
           <Stack.Screen
-            name='welcome-3'
+            name='welcome/welcome-3'
             options={{ animation: 'simple_push' }}
           />
           <Stack.Screen
@@ -74,7 +74,8 @@ export default function RootLayout() {
             name='get-started'
             options={{ animation: 'simple_push' }}
           />
-          <Stack.Screen name='login' />
+          <Stack.Screen name='auth/login' />
+          <Stack.Screen name='auth/sign-up' />
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='dark' />

@@ -119,7 +119,7 @@ const Question8Page = () => {
             variant={selectedItem.length > 0 ? 'primary' : 'primary-disabled'}
             disabled={selectedItem.length === 0}
             onPress={() => {
-              router.push('/question-7');
+              router.push('/auth/sign-up');
             }}
           />
         </YStack>

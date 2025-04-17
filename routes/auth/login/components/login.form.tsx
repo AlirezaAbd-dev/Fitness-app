@@ -1,9 +1,10 @@
 import CheckboxWithLabel from '@/components/ui/checkbox';
 import CustomButton from '@/components/ui/customButton';
+import CustomInput from '@/components/ui/customInput';
 import { KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link } from 'expo-router';
-import React from 'react';
-import { styled, Text, View, Input, Separator } from 'tamagui';
+import React, { useState } from 'react';
+import { Text, View, styled } from 'tamagui';
 
 const Section = styled(View, {
   marginTop: 36,
@@ -13,30 +14,6 @@ const InputLabel = styled(Text, {
   fontSize: 14,
   fontFamily: '$OpenSans',
   color: '$text-25',
-});
-
-const InputContainer = styled(View, {
-  flexDirection: 'row',
-  gap: 8,
-  alignItems: 'center',
-  width: '100%',
-  marginTop: 12,
-  borderRadius: 16,
-  borderWidth: 1,
-  borderColor: '$neutral-900',
-  paddingVertical: 12,
-  paddingHorizontal: 16,
-});
-
-const StyledInput = styled(Input, {
-  keyboardType: 'visible-password',
-  flex: 1,
-  color: '$neutral-700',
-  fontFamily: '$OpenSans',
-  fontSize: 18,
-  padding: 0,
-  justifyContent: 'center',
-  borderWidth: 0,
 });
 
 const LoginOptionsContainer = styled(View, {
@@ -54,37 +31,39 @@ const ForgetPasswordText = styled(Text, {
 });
 
 const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <Section>
       <InputLabel>Email</InputLabel>
-      <InputContainer>
-        <Mail
-          width={32}
-          height={24}
-          color={'$neutral-700'}
-        />
-        <Separator
-          vertical
-          borderColor={'$neutral-700'}
-          height={'100%'}
-        />
-        <StyledInput />
-      </InputContainer>
+      <CustomInput
+        value={email}
+        onChangeText={setEmail}
+        leadingIcon={
+          <Mail
+            width={32}
+            height={24}
+            color={'$neutral-700'}
+          />
+        }
+        keyboardType='email-address'
+      />
 
       <InputLabel marginTop={23}>Password</InputLabel>
-      <InputContainer>
-        <KeyRound
-          width={32}
-          height={24}
-          color={'$neutral-700'}
-        />
-        <Separator
-          vertical
-          borderColor={'$neutral-700'}
-          height={'100%'}
-        />
-        <StyledInput />
-      </InputContainer>
+      <CustomInput
+        value={password}
+        onChangeText={setPassword}
+        leadingIcon={
+          <KeyRound
+            width={32}
+            height={24}
+            color={'$neutral-700'}
+          />
+        }
+        secureTextEntry
+      />
+
       <LoginOptionsContainer>
         <CheckboxWithLabel
           size={24}
@@ -94,6 +73,7 @@ const LoginForm = () => {
           <ForgetPasswordText>Forget password?</ForgetPasswordText>
         </Link>
       </LoginOptionsContainer>
+
       <View marginTop={62}>
         <CustomButton
           text='Sign in'

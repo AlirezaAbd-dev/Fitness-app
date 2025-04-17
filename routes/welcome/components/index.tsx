@@ -92,7 +92,7 @@ const WelcomePage = () => {
               iconPosition='right'
               width={166}
               onPress={() => {
-                router.replace('/welcome-2');
+                router.replace('/welcome/welcome-2');
               }}
             />
           </Footer>

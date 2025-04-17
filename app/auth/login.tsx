@@ -1,4 +1,4 @@
-import LoginPage from '@/routes/login';
+import LoginPage from '@/routes/auth/login';
 import React from 'react';
 
 const Login = () => {

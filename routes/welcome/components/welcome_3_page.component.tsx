@@ -68,7 +68,7 @@ const Welcome3Page = () => {
 
   const { setShouldBlock } = useInterceptBackHandler({
     onBack: () => {
-      router.replace('/welcome-2');
+      router.replace('/welcome/welcome-2');
     },
   });
 
@@ -78,7 +78,8 @@ const Welcome3Page = () => {
         <ArrowLeft
           color={'white'}
           onTouchStart={() => {
-            router.replace('/welcome-2');
+            setShouldBlock(false);
+            router.replace('/welcome/welcome-2');
           }}
         />
         <CardContainer>
