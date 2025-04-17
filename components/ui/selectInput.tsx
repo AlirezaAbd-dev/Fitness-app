@@ -1,7 +1,18 @@
 // components/ui/SelectInput.tsx
 import React, { useState } from 'react';
-import { Input, ScrollView, Separator, styled, Text, View } from 'tamagui';
+import {
+  Input,
+  ScrollView,
+  Separator,
+  styled,
+  Text,
+  View,
+  GetProps,
+} from 'tamagui';
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
+
+// Get the proper type for our styled component
+type ComboboxContainerProps = GetProps<typeof ComboboxContainer>;
 
 type SelectInputProps = {
   options: string[];
@@ -9,6 +20,7 @@ type SelectInputProps = {
   onValueChange: (value: string) => void;
   placeholder?: string;
   icon?: React.ReactNode;
+  containerStyle?: ComboboxContainerProps['style']; // Use the correct style type
 };
 
 const InputContainer = styled(View, {
@@ -59,7 +71,6 @@ const DropdownSheet = styled(View, {
 
 const ComboboxContainer = styled(View, {
   position: 'relative',
-  marginBottom: 20,
 });
 
 export const SelectInput = ({
@@ -68,11 +79,12 @@ export const SelectInput = ({
   onValueChange,
   placeholder = 'Select an option',
   icon,
+  containerStyle,
 }: SelectInputProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ComboboxContainer>
+    <ComboboxContainer {...(containerStyle ? { style: containerStyle } : {})}>
       <InputContainer onPress={() => setOpen((prev) => !prev)}>
         {icon}
         {icon && (

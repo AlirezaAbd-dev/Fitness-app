@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { YStack, styled, Text } from 'tamagui';
+import { YStack, styled, Text, Separator } from 'tamagui';
 import QuestionHeader from '../_components/question_header.component';
 import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
-import { Calendar } from '@tamagui/lucide-icons';
+import { Calendar, Clock } from '@tamagui/lucide-icons';
 import { SelectInput } from '@/components/ui/selectInput';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -21,6 +21,13 @@ const DAYS = [
   '7 days',
 ];
 
+const TIME = [
+  '15-30 Minutes',
+  '30-45 Minutes',
+  '45-60 Minutes',
+  'More than 1 hour',
+];
+
 const QuestionTitle = styled(Text, {
   fontSize: 16,
   lineHeight: 26,
@@ -32,11 +39,20 @@ const DaysInWeekText = styled(Text, {
   fontFamily: '$OpenSans',
   fontSize: 14,
   color: '$text-25',
-  marginTop: 12,
+  marginTop: 20,
+  marginBottom: 12,
+});
+
+const HoursInDayText = styled(Text, {
+  fontFamily: '$OpenSans',
+  fontSize: 14,
+  color: '$text-25',
+  marginTop: 20,
 });
 
 const Question5Page = () => {
   const [selectedDays, setSelectedDays] = useState<string>('');
+  const [selectedHours, setSelectedHours] = useState<string>('');
   const router = useRouter();
 
   return (
@@ -57,7 +73,6 @@ const Question5Page = () => {
         <YStack
           flex={1}
           marginTop={24}
-          gap={24}
         >
           <QuestionTitle>
             How many days a week can you commit to working out?
@@ -77,13 +92,45 @@ const Question5Page = () => {
               />
             }
           />
+
+          <Separator
+            borderColor={'$neutral-700'}
+            width={'100%'}
+            marginVertical={24}
+          />
+
+          <YStack flex={1}>
+            <QuestionTitle>
+              How much time can you spend on each workout?
+            </QuestionTitle>
+
+            <HoursInDayText>Hours a day</HoursInDayText>
+            <SelectInput
+              options={TIME}
+              value={selectedHours}
+              onValueChange={setSelectedHours}
+              placeholder='Select days'
+              icon={
+                <Clock
+                  width={32}
+                  height={24}
+                  color='$neutral-700'
+                />
+              }
+              containerStyle={{
+                marginTop: 12,
+              }}
+            />
+          </YStack>
         </YStack>
 
         <CustomButton
           text='Next'
           size='medium'
-          variant={selectedDays ? 'primary' : 'primary-disabled'}
-          disabled={!selectedDays}
+          variant={
+            selectedDays && selectedHours ? 'primary' : 'primary-disabled'
+          }
+          disabled={!selectedDays || !selectedHours}
           onPress={() => router.push('/question-6')}
         />
       </YStack>
