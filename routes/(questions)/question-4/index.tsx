@@ -59,7 +59,7 @@ const Section = styled(View, {
   width: '100%',
   padding: 20,
   backgroundColor: '#141414',
-  paddingBottom: 50,
+  paddingBottom: 20,
 });
 
 const MainContainer = styled(View, {
