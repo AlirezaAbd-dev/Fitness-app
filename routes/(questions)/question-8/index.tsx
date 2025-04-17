@@ -10,21 +10,33 @@ const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
 });
 
-const GOALS = [
+const REASON_FOR_GOING_ON = [
   {
-    name: 'I don’t know what to do or where to start.',
+    name: 'Seeing physical changes in my body',
   },
   {
-    name: 'my workouts feel repetitive.',
+    name: 'To improve my appearance and body shape',
   },
   {
-    name: 'I’m not seeing progress',
+    name: 'To become stronger and healthier',
   },
   {
-    name: 'I don’t have enough time to work out properly.',
+    name: 'To challenge myself and grow',
   },
   {
-    name: 'I struggle to stay consistent or motivated.',
+    name: 'Working towards a clear goal',
+  },
+  {
+    name: 'To manage my weight and stay healthy long-term',
+  },
+  {
+    name: 'To be inspired or inspire others',
+  },
+  {
+    name: 'To improve my overall lifestyle',
+  },
+  {
+    name: 'I’m not sure yet — just giving it a try',
   },
 ] as const;
 
@@ -34,9 +46,9 @@ const QuestionTitle = styled(Text, {
   color: '$text-25',
 });
 
-type ItemType = (typeof GOALS)[number]['name'];
+type ItemType = (typeof REASON_FOR_GOING_ON)[number]['name'];
 
-const Question6Page = () => {
+const Question8Page = () => {
   const [selectedItem, setSelectedItem] = useState<ItemType[]>([]);
   const router = useRouter();
 
@@ -49,9 +61,9 @@ const Question6Page = () => {
       >
         <QuestionHeader
           allPages={8}
-          currentPage={6}
+          currentPage={8}
           title='Goal'
-          progress={75}
+          progress={100}
           onBackPress={() => router.back()}
         />
 
@@ -61,7 +73,7 @@ const Question6Page = () => {
           gap={24}
         >
           <QuestionTitle>
-            What’s your biggest challenge at the gym?
+            What are you looking for on this journey?
           </QuestionTitle>
 
           {/* Scrollable content area */}
@@ -76,7 +88,7 @@ const Question6Page = () => {
               }}
               showsVerticalScrollIndicator={false}
             >
-              {GOALS.map((g) => (
+              {REASON_FOR_GOING_ON.map((g) => (
                 <QuestionCheckboxItem
                   key={g.name}
                   title={g.name}
@@ -116,4 +128,4 @@ const Question6Page = () => {
   );
 };
 
-export default Question6Page;
+export default Question8Page;

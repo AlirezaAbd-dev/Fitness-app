@@ -10,21 +10,27 @@ const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
 });
 
-const GOALS = [
+const REASON_FOR_GOING_ON = [
   {
-    name: 'I don’t know what to do or where to start.',
+    name: 'Seeing physical changes in my body',
   },
   {
-    name: 'my workouts feel repetitive.',
+    name: 'Making progress and getting stronger',
   },
   {
-    name: 'I’m not seeing progress',
+    name: 'Getting inspired by others',
   },
   {
-    name: 'I don’t have enough time to work out properly.',
+    name: 'Having a coach or workout buddy',
   },
   {
-    name: 'I struggle to stay consistent or motivated.',
+    name: 'Working towards a clear goal',
+  },
+  {
+    name: 'Staying in control of my weight and overall balance',
+  },
+  {
+    name: 'That post-workout feeling of achievement and power',
   },
 ] as const;
 
@@ -34,9 +40,9 @@ const QuestionTitle = styled(Text, {
   color: '$text-25',
 });
 
-type ItemType = (typeof GOALS)[number]['name'];
+type ItemType = (typeof REASON_FOR_GOING_ON)[number]['name'];
 
-const Question6Page = () => {
+const Question7Page = () => {
   const [selectedItem, setSelectedItem] = useState<ItemType[]>([]);
   const router = useRouter();
 
@@ -49,9 +55,9 @@ const Question6Page = () => {
       >
         <QuestionHeader
           allPages={8}
-          currentPage={6}
+          currentPage={7}
           title='Goal'
-          progress={75}
+          progress={87}
           onBackPress={() => router.back()}
         />
 
@@ -60,9 +66,7 @@ const Question6Page = () => {
           marginTop={24}
           gap={24}
         >
-          <QuestionTitle>
-            What’s your biggest challenge at the gym?
-          </QuestionTitle>
+          <QuestionTitle>What keeps you motivated to keep going?</QuestionTitle>
 
           {/* Scrollable content area */}
           <YStack
@@ -76,7 +80,7 @@ const Question6Page = () => {
               }}
               showsVerticalScrollIndicator={false}
             >
-              {GOALS.map((g) => (
+              {REASON_FOR_GOING_ON.map((g) => (
                 <QuestionCheckboxItem
                   key={g.name}
                   title={g.name}
@@ -107,7 +111,7 @@ const Question6Page = () => {
             variant={selectedItem.length > 0 ? 'primary' : 'primary-disabled'}
             disabled={selectedItem.length === 0}
             onPress={() => {
-              router.push('/question-7');
+              router.push('/question-8');
             }}
           />
         </YStack>
@@ -116,4 +120,4 @@ const Question6Page = () => {
   );
 };
 
-export default Question6Page;
+export default Question7Page;
