@@ -92,7 +92,7 @@ const SignUpForm = () => {
       <View marginTop={24}>
         <CustomButton
           text='Sign up'
-          size='medium'
+          size='small'
         />
       </View>
       <TermsAndPrivacy>

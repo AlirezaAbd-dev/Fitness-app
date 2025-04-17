@@ -107,7 +107,7 @@ const Question7Page = () => {
 
           <CustomButton
             text='Next'
-            size='medium'
+            size='small'
             variant={selectedItem.length > 0 ? 'primary' : 'primary-disabled'}
             disabled={selectedItem.length === 0}
             onPress={() => {

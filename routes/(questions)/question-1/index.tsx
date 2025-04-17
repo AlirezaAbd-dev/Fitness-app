@@ -97,7 +97,7 @@ const Question1Page = () => {
 
           <CustomButton
             text='Next'
-            size='medium'
+            size='small'
             variant={!!selectedGender ? 'primary' : 'primary-disabled'}
             disabled={!!selectedGender ? false : true}
             onPress={() => {

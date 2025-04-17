@@ -175,7 +175,7 @@ const Question4Page = () => {
           {/* Fixed Button at Bottom */}
           <CustomButton
             text='Next'
-            size='medium'
+            size='small'
             variant={selectedItems.length > 0 ? 'primary' : 'primary-disabled'}
             disabled={selectedItems.length === 0}
             onPress={() => router.push('/question-5')}

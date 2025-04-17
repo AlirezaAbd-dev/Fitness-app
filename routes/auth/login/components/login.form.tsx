@@ -77,7 +77,7 @@ const LoginForm = () => {
       <View marginTop={62}>
         <CustomButton
           text='Sign in'
-          size='medium'
+          size='small'
         />
       </View>
     </Section>

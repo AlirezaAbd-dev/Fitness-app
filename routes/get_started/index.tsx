@@ -119,7 +119,7 @@ const GetStartedPage = () => {
             >
               <CustomButton
                 text='Get start'
-                size='medium'
+                size='small'
               />
             </Link>
             <LoginText>

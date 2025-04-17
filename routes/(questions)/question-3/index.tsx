@@ -90,7 +90,7 @@ const Question3Page = () => {
 
           <CustomButton
             text='Next'
-            size='medium'
+            size='small'
             variant={selectedItem ? 'primary' : 'primary-disabled'}
             disabled={!selectedItem}
             onPress={() => {

@@ -124,7 +124,7 @@ const Question5Page = () => {
 
         <CustomButton
           text='Next'
-          size='medium'
+          size='small'
           variant={
             selectedDays && selectedHours ? 'primary' : 'primary-disabled'
           }
