@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView, styled, Text, View, YStack } from 'tamagui';
+import { ScrollView, styled, Text, YStack } from 'tamagui';
 import QuestionHeader from '../_components/question_header.component';
 import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';

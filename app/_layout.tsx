@@ -1,16 +1,18 @@
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, useRouter, useRootNavigationState } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { TamaguiProvider, Theme } from 'tamagui';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View } from 'react-native';
+
 import config from '../tamagui.config';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -23,47 +25,54 @@ export default function RootLayout() {
     'OpenSans-ExtraBold': require('../assets/fonts/OpenSans-ExtraBold.ttf'),
   });
 
+  const [appReady, setAppReady] = useState(false);
+  const [initialRoute, setInitialRoute] = useState<string | null>(null);
+
   useEffect(() => {
+    const prepare = async () => {
+      const hasSeenWelcome = await AsyncStorage.getItem('hasSeenWelcome');
+      setInitialRoute(hasSeenWelcome ? 'get-started' : 'welcome');
+      setAppReady(true);
+    };
+
     if (loaded) {
-      SplashScreen.hideAsync();
+      prepare();
     }
   }, [loaded]);
 
-  if (!loaded) {
-    return null;
+  useEffect(() => {
+    if (loaded && appReady) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, appReady]);
+
+  if (!loaded || !appReady || !initialRoute) {
+    return <View style={{ flex: 1, backgroundColor: 'white' }} />;
   }
 
   return (
     <TamaguiProvider config={config}>
       <Theme name={colorScheme}>
         <Stack
-          initialRouteName='(questions)'
+          initialRouteName={initialRoute}
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name='welcome' />
           <Stack.Screen
             name='welcome-2'
-            options={{
-              animation: 'simple_push',
-            }}
+            options={{ animation: 'simple_push' }}
           />
           <Stack.Screen
             name='welcome-3'
-            options={{
-              animation: 'simple_push',
-            }}
+            options={{ animation: 'simple_push' }}
           />
           <Stack.Screen
             name='(questions)'
-            options={{
-              animation: 'simple_push',
-            }}
+            options={{ animation: 'simple_push' }}
           />
           <Stack.Screen
             name='get-started'
-            options={{
-              animation: 'simple_push',
-            }}
+            options={{ animation: 'simple_push' }}
           />
           <Stack.Screen name='login' />
           <Stack.Screen name='+not-found' />

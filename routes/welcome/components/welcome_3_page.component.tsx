@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styled, Text, View } from 'tamagui';
@@ -7,8 +7,10 @@ import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 // @ts-ignore
 import image from '@/assets/images/welcome-3.png';
 import SliderIndicator from './slider_indicator.component';
-import { Link, useNavigation } from 'expo-router';
+import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useInterceptBackHandler } from '@/hooks/useInterceptBackHandler';
 
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -60,26 +62,15 @@ const Footer = styled(View, {
   width: '100%',
 });
 
-const NextButton = styled(View, {
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: 8,
-  paddingHorizontal: 48,
-  paddingVertical: 16,
-  backgroundColor: '#201E1E',
-  borderRadius: 16,
-});
-
-const NextButtonText = styled(Text, {
-  fontFamily: '$OpenSans',
-  fontSize: 16,
-  color: '$white',
-  fontWeight: 700,
-});
-
 const Welcome3Page = () => {
-  const navigation = useNavigation();
+  // const hasRedirectedRef = useRef(false);
+  const router = useRouter();
+
+  const { setShouldBlock } = useInterceptBackHandler({
+    onBack: () => {
+      router.replace('/welcome-2');
+    },
+  });
 
   return (
     <StyledSafeAreaView>
@@ -87,7 +78,7 @@ const Welcome3Page = () => {
         <ArrowLeft
           color={'white'}
           onTouchStart={() => {
-            navigation.goBack();
+            router.replace('/welcome-2');
           }}
         />
         <CardContainer>
@@ -103,25 +94,26 @@ const Welcome3Page = () => {
               numberOfSlides={3}
               activeSlider={3}
             />
-            <Link
-              href={'/get-started'}
-              asChild
-            >
-              <CustomButton
-                text='Next'
-                variant='secondary'
-                size='large'
-                icon={
-                  <ArrowRight
-                    color={'$text-25'}
-                    width={24}
-                    height={24}
-                  />
-                }
-                iconPosition='right'
-                width={166}
-              />
-            </Link>
+
+            <CustomButton
+              text='Next'
+              variant='secondary'
+              size='large'
+              icon={
+                <ArrowRight
+                  color={'$text-25'}
+                  width={24}
+                  height={24}
+                />
+              }
+              iconPosition='right'
+              width={166}
+              onPress={async () => {
+                setShouldBlock(false);
+                await AsyncStorage.setItem('hasSeenWelcome', 'true');
+                router.replace('/get-started');
+              }}
+            />
           </Footer>
         </CardContainer>
       </StyledImageBackground>

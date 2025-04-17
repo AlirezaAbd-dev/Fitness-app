@@ -7,7 +7,7 @@ import { ArrowRight } from '@tamagui/lucide-icons';
 // @ts-ignore
 import image from '@/assets/images/welcome-1.png';
 import SliderIndicator from './slider_indicator.component';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
 
 // Styled Components
@@ -61,6 +61,8 @@ const Footer = styled(View, {
 
 // Component
 const WelcomePage = () => {
+  const router = useRouter();
+
   return (
     <StyledSafeAreaView>
       <StyledImageBackground source={image}>
@@ -76,25 +78,23 @@ const WelcomePage = () => {
               numberOfSlides={3}
               activeSlider={1}
             />
-            <Link
-              href={'/welcome-2'}
-              asChild
-            >
-              <CustomButton
-                text='Next'
-                variant='secondary'
-                size='large'
-                icon={
-                  <ArrowRight
-                    color={'$text-25'}
-                    width={24}
-                    height={24}
-                  />
-                }
-                iconPosition='right'
-                width={166}
-              />
-            </Link>
+            <CustomButton
+              text='Next'
+              variant='secondary'
+              size='large'
+              icon={
+                <ArrowRight
+                  color={'$text-25'}
+                  width={24}
+                  height={24}
+                />
+              }
+              iconPosition='right'
+              width={166}
+              onPress={() => {
+                router.replace('/welcome-2');
+              }}
+            />
           </Footer>
         </CardContainer>
       </StyledImageBackground>

@@ -18,7 +18,6 @@ type SelectInputProps = {
   options: string[];
   value: string;
   onValueChange: (value: string) => void;
-  placeholder?: string;
   icon?: React.ReactNode;
   containerStyle?: ComboboxContainerProps['style']; // Use the correct style type
 };
@@ -77,7 +76,6 @@ export const SelectInput = ({
   options,
   value,
   onValueChange,
-  placeholder = 'Select an option',
   icon,
   containerStyle,
 }: SelectInputProps) => {
@@ -95,7 +93,6 @@ export const SelectInput = ({
           />
         )}
         <StyledInput
-          placeholder={placeholder}
           value={value}
           editable={false}
         />

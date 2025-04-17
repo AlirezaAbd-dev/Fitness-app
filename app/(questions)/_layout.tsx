@@ -4,7 +4,7 @@ import React from 'react';
 const QuestionLayout = () => {
   return (
     <Stack
-      initialRouteName='question-4'
+      initialRouteName='question-1'
       screenOptions={{
         headerShown: false,
       }}
@@ -31,6 +31,14 @@ const QuestionLayout = () => {
       />
       <Stack.Screen
         name='question-6'
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='question-7'
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='question-8'
         options={{ headerShown: false }}
       />
     </Stack>

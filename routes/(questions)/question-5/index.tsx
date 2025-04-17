@@ -83,7 +83,6 @@ const Question5Page = () => {
             options={DAYS}
             value={selectedDays}
             onValueChange={setSelectedDays}
-            placeholder='Select days'
             icon={
               <Calendar
                 width={32}
@@ -109,7 +108,6 @@ const Question5Page = () => {
               options={TIME}
               value={selectedHours}
               onValueChange={setSelectedHours}
-              placeholder='Select days'
               icon={
                 <Clock
                   width={32}

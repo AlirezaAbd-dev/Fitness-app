@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styled, Text, View } from 'tamagui';
@@ -7,8 +7,9 @@ import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 // @ts-ignore
 import image from '@/assets/images/welcome-2.png';
 import SliderIndicator from './slider_indicator.component';
-import { Link, useNavigation } from 'expo-router';
+import { Link, useNavigation, useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
+import { useInterceptBackHandler } from '@/hooks/useInterceptBackHandler';
 
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -61,7 +62,13 @@ const Footer = styled(View, {
 });
 
 const Welcome2Page = () => {
-  const navigation = useNavigation();
+  const router = useRouter();
+
+  const { setShouldBlock } = useInterceptBackHandler({
+    onBack: () => {
+      router.replace('/welcome');
+    },
+  });
 
   return (
     <StyledSafeAreaView>
@@ -69,7 +76,7 @@ const Welcome2Page = () => {
         <ArrowLeft
           color={'white'}
           onTouchStart={() => {
-            navigation.goBack();
+            router.replace('/welcome');
           }}
         />
         <CardContainer>
@@ -88,6 +95,7 @@ const Welcome2Page = () => {
             <Link
               href={'/welcome-3'}
               asChild
+              replace
             >
               <CustomButton
                 text='Next'
@@ -102,6 +110,10 @@ const Welcome2Page = () => {
                 }
                 iconPosition='right'
                 width={166}
+                onPress={() => {
+                  setShouldBlock(false);
+                  router.replace('/welcome-3');
+                }}
               />
             </Link>
           </Footer>
