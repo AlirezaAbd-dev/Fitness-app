@@ -76,6 +76,7 @@ export default function RootLayout() {
           />
           <Stack.Screen name='auth/login' />
           <Stack.Screen name='auth/sign-up' />
+
           <Stack.Screen name='+not-found' />
         </Stack>
         <StatusBar style='dark' />

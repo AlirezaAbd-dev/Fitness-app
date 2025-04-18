@@ -1,16 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { styled, Text, View } from 'tamagui';
-import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
+import { Button, styled, Text, View } from 'tamagui';
+import { ArrowRight } from '@tamagui/lucide-icons';
 
 // @ts-ignore
-import image from '@/assets/images/welcome-3.png';
-import SliderIndicator from './slider_indicator.component';
-import { useRouter } from 'expo-router';
+import image from '@/assets/images/welcome-1.png';
+import SliderIndicator from './components/slider_indicator.component';
+import { Link, useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useInterceptBackHandler } from '@/hooks/useInterceptBackHandler';
 
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -19,10 +17,9 @@ const StyledSafeAreaView = styled(SafeAreaView, {
 
 const StyledImageBackground = styled(ImageBackground, {
   flex: 1,
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
   paddingHorizontal: 20,
   paddingVertical: 34,
-  paddingTop: 16,
 });
 
 const CardContainer = styled(View, {
@@ -62,40 +59,25 @@ const Footer = styled(View, {
   width: '100%',
 });
 
-const Welcome3Page = () => {
-  // const hasRedirectedRef = useRef(false);
+// Component
+const WelcomePage = () => {
   const router = useRouter();
-
-  const { setShouldBlock } = useInterceptBackHandler({
-    onBack: () => {
-      router.replace('/welcome/welcome-2');
-    },
-  });
 
   return (
     <StyledSafeAreaView>
       <StyledImageBackground source={image}>
-        <ArrowLeft
-          color={'white'}
-          onTouchStart={() => {
-            setShouldBlock(false);
-            router.replace('/welcome/welcome-2');
-          }}
-        />
         <CardContainer>
           <CenteredContent>
-            <TitleText>Train with experts, stay inspired!</TitleText>
+            <TitleText>A plan tailored just for you!</TitleText>
             <DescriptionText>
-              Get guidance from professional coaches and connect with other
-              fitness enthusiasts.
+              Get a workout plan customized to your level, goals, and body type.
             </DescriptionText>
           </CenteredContent>
           <Footer>
             <SliderIndicator
               numberOfSlides={3}
-              activeSlider={3}
+              activeSlider={1}
             />
-
             <CustomButton
               text='Next'
               variant='secondary'
@@ -109,10 +91,8 @@ const Welcome3Page = () => {
               }
               iconPosition='right'
               width={150}
-              onPress={async () => {
-                setShouldBlock(false);
-                await AsyncStorage.setItem('hasSeenWelcome', 'true');
-                router.replace('/get-started');
+              onPress={() => {
+                router.replace('/welcome/welcome-2');
               }}
             />
           </Footer>
@@ -122,4 +102,4 @@ const Welcome3Page = () => {
   );
 };
 
-export default Welcome3Page;
+export default WelcomePage;

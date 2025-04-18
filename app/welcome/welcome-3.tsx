@@ -1,4 +1,4 @@
-import Welcome3Page from '@/routes/welcome/components/welcome_3_page.component';
+import Welcome3Page from '@/routes/welcome/welcome_3_page.component';
 import React from 'react';
 
 const Welcome2 = () => {

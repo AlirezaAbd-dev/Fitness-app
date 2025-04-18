@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 
 // @ts-ignore
 import image from '@/assets/images/welcome-2.png';
-import SliderIndicator from './slider_indicator.component';
+import SliderIndicator from './components/slider_indicator.component';
 import { Link, useNavigation, useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
 import { useInterceptBackHandler } from '@/hooks/useInterceptBackHandler';
