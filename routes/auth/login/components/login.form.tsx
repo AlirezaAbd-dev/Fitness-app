@@ -1,7 +1,7 @@
 import CheckboxWithLabel from '@/components/ui/checkbox';
 import CustomButton from '@/components/ui/customButton';
 import CustomInput from '@/components/ui/customInput';
-import { KeyRound, Mail } from '@tamagui/lucide-icons';
+import { EyeOff, KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { Text, View, styled } from 'tamagui';
@@ -42,8 +42,7 @@ const LoginForm = () => {
         onChangeText={setEmail}
         leadingIcon={
           <Mail
-            width={32}
-            height={24}
+            size={20}
             color={'$neutral-700'}
           />
         }
@@ -56,12 +55,16 @@ const LoginForm = () => {
         onChangeText={setPassword}
         leadingIcon={
           <KeyRound
-            width={32}
-            height={24}
+            size={20}
             color={'$neutral-700'}
           />
         }
-        secureTextEntry
+        trailingIcon={
+          <EyeOff
+            size={20}
+            color={'$neutral-700'}
+          />
+        }
       />
 
       <LoginOptionsContainer>

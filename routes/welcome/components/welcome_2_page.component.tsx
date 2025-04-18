@@ -109,7 +109,7 @@ const Welcome2Page = () => {
                   />
                 }
                 iconPosition='right'
-                width={166}
+                width={150}
                 onPress={() => {
                   setShouldBlock(false);
                   router.replace('/welcome/welcome-3');

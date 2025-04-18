@@ -90,7 +90,7 @@ const WelcomePage = () => {
                 />
               }
               iconPosition='right'
-              width={166}
+              width={150}
               onPress={() => {
                 router.replace('/welcome/welcome-2');
               }}

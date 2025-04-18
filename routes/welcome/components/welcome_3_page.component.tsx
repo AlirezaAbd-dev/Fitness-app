@@ -108,7 +108,7 @@ const Welcome3Page = () => {
                 />
               }
               iconPosition='right'
-              width={166}
+              width={150}
               onPress={async () => {
                 setShouldBlock(false);
                 await AsyncStorage.setItem('hasSeenWelcome', 'true');

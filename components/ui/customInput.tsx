@@ -10,7 +10,8 @@ const InputContainer = styled(View, {
   borderRadius: 16,
   borderWidth: 1,
   borderColor: '$neutral-900',
-  paddingVertical: 12,
+  height: 44,
+  paddingVertical: 10,
   paddingHorizontal: 16,
 });
 

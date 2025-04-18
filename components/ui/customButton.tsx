@@ -49,13 +49,13 @@ const StyledButton = styled(TamaguiButton, {
     },
     size: {
       small: {
-        paddingVertical: 12,
+        height: 44,
       },
       medium: {
-        paddingVertical: 14,
+        height: 46,
       },
       large: {
-        paddingVertical: 17,
+        height: 48,
       },
     },
   } as const,
