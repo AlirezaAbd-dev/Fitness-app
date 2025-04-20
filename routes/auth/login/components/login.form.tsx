@@ -5,6 +5,11 @@ import { Eye, EyeOff, KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { Text, View, styled } from 'tamagui';
+import { Controller, useForm } from 'react-hook-form';
+import loginValidation, {
+  LoginValidationType,
+} from '../validation/login.validation';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const Section = styled(View, {
   marginTop: 36,
@@ -31,56 +36,101 @@ const ForgetPasswordText = styled(Text, {
 });
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const [hiddenPassword, setHiddenPassword] = useState(true);
+
+  const { control, handleSubmit } = useForm<LoginValidationType>({
+    resolver: zodResolver(loginValidation),
+  });
+
+  const onSubmitHandler = (values: LoginValidationType) => {
+    console.log(values);
+  };
 
   return (
     <Section>
       <InputLabel>Email</InputLabel>
-      <CustomInput
-        value={email}
-        onChangeText={setEmail}
-        leadingIcon={
-          <Mail
-            size={20}
-            color={'$neutral-700'}
-          />
-        }
-        keyboardType='email-address'
+      <Controller
+        control={control}
+        name='email'
+        render={({ field, fieldState }) => (
+          <>
+            <CustomInput
+              value={field.value}
+              onChangeText={field.onChange}
+              onBlur={field.onBlur}
+              leadingIcon={
+                <Mail
+                  size={20}
+                  color={'$neutral-700'}
+                />
+              }
+              keyboardType='email-address'
+              placeholder='Enter your email'
+            />
+            {fieldState.error && (
+              <Text
+                marginTop={4}
+                fontFamily={'$OpenSans'}
+                fontSize={12}
+                color={'$error-500'}
+              >
+                {fieldState.error?.message}
+              </Text>
+            )}
+          </>
+        )}
       />
 
       <InputLabel marginTop={23}>Password</InputLabel>
-      <CustomInput
-        value={password}
-        onChangeText={setPassword}
-        leadingIcon={
-          <KeyRound
-            size={20}
-            color={'$neutral-700'}
-          />
-        }
-        trailingIcon={
-          hiddenPassword ? (
-            <EyeOff
-              size={20}
-              color={'$neutral-700'}
-              onPress={() => {
-                setHiddenPassword(false);
-              }}
+      <Controller
+        control={control}
+        name='password'
+        render={({ field, fieldState }) => (
+          <>
+            <CustomInput
+              value={field.value}
+              onChangeText={field.onChange}
+              onBlur={field.onBlur}
+              secureTextEntry={hiddenPassword}
+              leadingIcon={
+                <KeyRound
+                  size={20}
+                  color={'$neutral-700'}
+                />
+              }
+              trailingIcon={
+                hiddenPassword ? (
+                  <EyeOff
+                    size={20}
+                    color={'$neutral-700'}
+                    onPress={() => {
+                      setHiddenPassword(false);
+                    }}
+                  />
+                ) : (
+                  <Eye
+                    size={20}
+                    color={'$neutral-700'}
+                    onPress={() => {
+                      setHiddenPassword(true);
+                    }}
+                  />
+                )
+              }
+              placeholder='Enter your password'
             />
-          ) : (
-            <Eye
-              size={20}
-              color={'$neutral-700'}
-              onPress={() => {
-                setHiddenPassword(true);
-              }}
-            />
-          )
-        }
-        secureTextEntry={hiddenPassword}
+            {fieldState.error && (
+              <Text
+                color={'$error-500'}
+                marginTop={4}
+                fontFamily={'$OpenSans'}
+                fontSize={12}
+              >
+                {fieldState.error?.message}
+              </Text>
+            )}
+          </>
+        )}
       />
 
       <LoginOptionsContainer>
@@ -97,6 +147,7 @@ const LoginForm = () => {
         <CustomButton
           text='Sign in'
           size='small'
+          onPress={handleSubmit(onSubmitHandler)}
         />
       </View>
     </Section>

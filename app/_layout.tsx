@@ -1,15 +1,15 @@
+import { View } from 'react-native';
 import { useFonts } from 'expo-font';
-import { Stack, useRouter, useRootNavigationState } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { TamaguiProvider, Theme } from 'tamagui';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View } from 'react-native';
+import { QueryProvider } from '@/providers/query.provider';
 
 import config from '../tamagui.config';
 
@@ -51,36 +51,37 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={config}>
-      <Theme name={colorScheme}>
-        <Stack
-          initialRouteName={initialRoute}
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name='welcome/welcome' />
-          <Stack.Screen
-            name='welcome/welcome-2'
-            options={{ animation: 'simple_push' }}
-          />
-          <Stack.Screen
-            name='welcome/welcome-3'
-            options={{ animation: 'simple_push' }}
-          />
-          <Stack.Screen
-            name='(questions)'
-            options={{ animation: 'simple_push' }}
-          />
-          <Stack.Screen
-            name='get-started'
-            options={{ animation: 'simple_push' }}
-          />
-          <Stack.Screen name='auth/login' />
-          <Stack.Screen name='auth/sign-up' />
-
-          <Stack.Screen name='+not-found' />
-        </Stack>
-        <StatusBar style='dark' />
-      </Theme>
-    </TamaguiProvider>
+    <QueryProvider>
+      <TamaguiProvider config={config}>
+        <Theme name={colorScheme}>
+          <Stack
+            initialRouteName={initialRoute}
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name='welcome/welcome' />
+            <Stack.Screen
+              name='welcome/welcome-2'
+              options={{ animation: 'simple_push' }}
+            />
+            <Stack.Screen
+              name='welcome/welcome-3'
+              options={{ animation: 'simple_push' }}
+            />
+            <Stack.Screen
+              name='(questions)'
+              options={{ animation: 'simple_push' }}
+            />
+            <Stack.Screen
+              name='get-started'
+              options={{ animation: 'simple_push' }}
+            />
+            <Stack.Screen name='auth/login' />
+            <Stack.Screen name='auth/sign-up' />
+            <Stack.Screen name='+not-found' />
+          </Stack>
+          <StatusBar style='dark' />
+        </Theme>
+      </TamaguiProvider>
+    </QueryProvider>
   );
 }
