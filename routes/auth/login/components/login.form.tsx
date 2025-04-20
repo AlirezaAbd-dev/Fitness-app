@@ -1,7 +1,7 @@
 import CheckboxWithLabel from '@/components/ui/checkbox';
 import CustomButton from '@/components/ui/customButton';
 import CustomInput from '@/components/ui/customInput';
-import { EyeOff, KeyRound, Mail } from '@tamagui/lucide-icons';
+import { Eye, EyeOff, KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { Text, View, styled } from 'tamagui';
@@ -34,6 +34,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [hiddenPassword, setHiddenPassword] = useState(true);
+
   return (
     <Section>
       <InputLabel>Email</InputLabel>
@@ -60,11 +62,25 @@ const LoginForm = () => {
           />
         }
         trailingIcon={
-          <EyeOff
-            size={20}
-            color={'$neutral-700'}
-          />
+          hiddenPassword ? (
+            <EyeOff
+              size={20}
+              color={'$neutral-700'}
+              onPress={() => {
+                setHiddenPassword(false);
+              }}
+            />
+          ) : (
+            <Eye
+              size={20}
+              color={'$neutral-700'}
+              onPress={() => {
+                setHiddenPassword(true);
+              }}
+            />
+          )
         }
+        secureTextEntry={hiddenPassword}
       />
 
       <LoginOptionsContainer>
@@ -72,7 +88,7 @@ const LoginForm = () => {
           size={24}
           label='Remember me'
         />
-        <Link href={'/+not-found'}>
+        <Link href={'/auth/forget-password/enter-email'}>
           <ForgetPasswordText>Forget password?</ForgetPasswordText>
         </Link>
       </LoginOptionsContainer>
