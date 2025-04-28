@@ -11,6 +11,7 @@ import { useRouter } from 'expo-router';
 import CustomButton from '@/components/ui/customButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useInterceptBackHandler } from '@/hooks/useInterceptBackHandler';
+import storageKeys from '@/constants/StorageKeys.constants';
 
 // Styled Components
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -111,7 +112,10 @@ const Welcome3Page = () => {
               width={150}
               onPress={async () => {
                 setShouldBlock(false);
-                await AsyncStorage.setItem('hasSeenWelcome', 'true');
+                await AsyncStorage.setItem(
+                  storageKeys.HAS_SEEN_WELCOME,
+                  'true',
+                );
                 router.replace('/get-started');
               }}
             />

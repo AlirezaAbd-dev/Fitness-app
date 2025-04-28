@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { styled, Text, View } from 'tamagui';
+import { styled, Text, View, ScrollView } from 'tamagui'; // <-- import ScrollView
 import LoginHeader from './components/login_header.component';
 import LoginForm from './components/login.form';
 import LoginWith from './components/login_with.component';
@@ -10,8 +10,7 @@ const StyledSafeAreaView = styled(SafeAreaView, {
 });
 
 const Section = styled(View, {
-  flex: 1,
-  backgroundColor: '#141414',
+  flexGrow: 1,
   paddingHorizontal: 20,
   paddingBottom: 20,
 });
@@ -27,20 +26,30 @@ const LogoContainer = styled(View, {
 const LoginPage = () => {
   return (
     <StyledSafeAreaView>
-      <Section>
-        <LogoContainer>
-          <Text
-            color={'$text-25'}
-            fontFamily={'$OpenSans-SemiBold'}
-            fontSize={16}
-          >
-            Logo
-          </Text>
-        </LogoContainer>
-        <LoginHeader />
-        <LoginForm />
-        <LoginWith />
-      </Section>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          backgroundColor: '#141414',
+        }}
+        keyboardShouldPersistTaps='handled'
+        showsVerticalScrollIndicator={false}
+      >
+        <Section>
+          <LogoContainer>
+            <Text
+              color={'$text-25'}
+              fontFamily={'$OpenSans-SemiBold'}
+              fontSize={16}
+            >
+              Logo
+            </Text>
+          </LogoContainer>
+          <LoginHeader />
+          <LoginForm />
+          <LoginWith />
+        </Section>
+      </ScrollView>
     </StyledSafeAreaView>
   );
 };

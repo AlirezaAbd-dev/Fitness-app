@@ -3,13 +3,16 @@ import CustomButton from '@/components/ui/customButton';
 import CustomInput from '@/components/ui/customInput';
 import { Eye, EyeOff, KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, styled } from 'tamagui';
 import { Controller, useForm } from 'react-hook-form';
 import loginValidation, {
   LoginValidationType,
 } from '../validation/login.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import useLoginMutation from '../queries/login.mutation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import storageKeys from '@/constants/StorageKeys.constants';
 
 const Section = styled(View, {
   marginTop: 36,
@@ -38,13 +41,23 @@ const ForgetPasswordText = styled(Text, {
 const LoginForm = () => {
   const [hiddenPassword, setHiddenPassword] = useState(true);
 
+  const { mutate, data, isPending, error } = useLoginMutation();
+
   const { control, handleSubmit } = useForm<LoginValidationType>({
     resolver: zodResolver(loginValidation),
   });
 
   const onSubmitHandler = (values: LoginValidationType) => {
-    console.log(values);
+    mutate(values);
   };
+
+  useEffect(() => {
+    (async () => {
+      if (!isPending && data) {
+        await AsyncStorage.setItem(storageKeys.TOKEN, data.data.data.token);
+      }
+    })();
+  }, [data, isPending]);
 
   return (
     <Section>
@@ -144,10 +157,21 @@ const LoginForm = () => {
       </LoginOptionsContainer>
 
       <View marginTop={62}>
+        <Text
+          color={'$error-500'}
+          marginBottom={4}
+          textAlign='center'
+          fontFamily={'$OpenSans'}
+          fontSize={12}
+        >
+          {error?.response?.data.message}
+        </Text>
         <CustomButton
           text='Sign in'
           size='small'
           onPress={handleSubmit(onSubmitHandler)}
+          isPending={isPending}
+          disabled={isPending}
         />
       </View>
     </Section>

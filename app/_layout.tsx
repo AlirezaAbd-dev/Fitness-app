@@ -12,6 +12,7 @@ import { TamaguiProvider, Theme } from 'tamagui';
 import { QueryProvider } from '@/providers/query.provider';
 
 import config from '../tamagui.config';
+import storageKeys from '@/constants/StorageKeys.constants';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +31,9 @@ export default function RootLayout() {
 
   useEffect(() => {
     const prepare = async () => {
-      const hasSeenWelcome = await AsyncStorage.getItem('hasSeenWelcome');
+      const hasSeenWelcome = await AsyncStorage.getItem(
+        storageKeys.HAS_SEEN_WELCOME,
+      );
       setInitialRoute(hasSeenWelcome ? 'get-started' : 'welcome/welcome');
       setAppReady(true);
     };

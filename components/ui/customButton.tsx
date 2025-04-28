@@ -1,12 +1,6 @@
 import React from 'react';
-import { GestureResponderEvent } from 'react-native';
-import {
-  styled,
-  Text,
-  View,
-  Button as TamaguiButton,
-  GetThemeValueForKey,
-} from 'tamagui';
+import { ActivityIndicator, GestureResponderEvent } from 'react-native';
+import { styled, Text, View, Button as TamaguiButton } from 'tamagui';
 
 type ButtonVariant = 'primary' | 'secondary' | 'primary-disabled';
 type ButtonSize = 'small' | 'medium' | 'large';
@@ -20,6 +14,7 @@ interface ButtonProps {
   iconPosition?: 'left' | 'right';
   width?: any;
   disabled?: boolean;
+  isPending?: boolean; // <-- Added isPending prop
 }
 
 // Styled Components
@@ -93,6 +88,7 @@ const CustomButton: React.FC<ButtonProps> = ({
   iconPosition = 'left',
   width = '100%',
   disabled = false,
+  isPending = false, // <-- Default value for isPending
 }) => {
   return (
     <StyledButton
@@ -100,11 +96,19 @@ const CustomButton: React.FC<ButtonProps> = ({
       size={size}
       onPress={onPress}
       width={width}
-      disabled={disabled}
+      disabled={disabled || isPending} // disable the button if pending
     >
-      {icon && iconPosition === 'left' && <View> {icon}</View>}
-      <StyledText variant={variant}>{text}</StyledText>
-      {icon && iconPosition === 'right' && <View>{icon}</View>}
+      {isPending ? (
+        <ActivityIndicator
+          color={variant === 'secondary' ? 'white' : 'black'}
+        />
+      ) : (
+        <>
+          {icon && iconPosition === 'left' && <View>{icon}</View>}
+          <StyledText variant={variant}>{text}</StyledText>
+          {icon && iconPosition === 'right' && <View>{icon}</View>}
+        </>
+      )}
     </StyledButton>
   );
 };
