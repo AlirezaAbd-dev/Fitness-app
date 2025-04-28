@@ -4,17 +4,19 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 import { LoginValidationType } from '../validation/login.validation';
 
+export type AuthResponse = {
+  status: boolean;
+  message: string;
+  data: {
+    token: string;
+    token_type: string;
+    user: string;
+  };
+};
+
 const useLoginMutation = () => {
   const mutation = useMutation<
-    AxiosResponse<{
-      status: boolean;
-      message: string;
-      data: {
-        token: string;
-        token_type: string;
-        user: string;
-      };
-    }>,
+    AxiosResponse<AuthResponse>,
     AxiosError<{ message: string }>,
     LoginValidationType
   >({
