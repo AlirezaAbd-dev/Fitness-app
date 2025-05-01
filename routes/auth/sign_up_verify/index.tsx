@@ -125,6 +125,9 @@ const SignUpVerifyPage = () => {
                 pinCodeTextStyle: OTPStyles.pinCodeTextStyle,
                 focusStickStyle: OTPStyles.focusStickStyle,
               }}
+              onFilled={() => {
+                onSubmitHandler();
+              }}
             />
           </OTPContainer>
         </View>

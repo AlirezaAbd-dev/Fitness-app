@@ -3,6 +3,7 @@ const queryKeys = {
   LOGIN: 'Login',
   SIGNUP: 'Signup',
   SIGNUP_VERIFY: 'SignupVerify',
+  FORGET_PASSWORD_ENTER_EMAIL: 'ForgetPasswordEnterEmail',
 };
 
 export default queryKeys;

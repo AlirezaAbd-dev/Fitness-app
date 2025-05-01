@@ -3,8 +3,14 @@ import CustomInput from '@/components/ui/customInput';
 import { ArrowLeft, KeyRound, Mail } from '@tamagui/lucide-icons';
 import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styled, Text, View } from 'tamagui';
+import forgetPassEnterEmailValidation, {
+  ForgetPassEnterEmailValidationType,
+} from './forget_pass_enter_email.validation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import useForgetPassEnterEmailMutation from './forget_pass_enter_email.mutatuion';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
@@ -58,9 +64,19 @@ const AlreadyHaveAccountText = styled(Text, {
 });
 
 const EnterEmailPage = () => {
-  const [email, setEmail] = useState('');
-
   const router = useRouter();
+
+  const { control, handleSubmit } = useForm<ForgetPassEnterEmailValidationType>(
+    {
+      resolver: zodResolver(forgetPassEnterEmailValidation),
+    },
+  );
+
+  const { mutate, isPending, error } = useForgetPassEnterEmailMutation();
+
+  function onSubmitHandler(values: ForgetPassEnterEmailValidationType) {
+    mutate(values);
+  }
 
   return (
     <StyledSafeAreaView>
@@ -83,29 +99,52 @@ const EnterEmailPage = () => {
           <Description>We’ll send you a reset code to your email.</Description>
 
           <Label>Email</Label>
-          <CustomInput
-            value={email}
-            onChangeText={setEmail}
-            keyboardType='email-address'
-            marginTop={12}
-            leadingIcon={
-              <Mail
-                size={20}
-                color={'$neutral-700'}
-              />
-            }
+          <Controller
+            control={control}
+            name='email'
+            render={({ field, fieldState }) => (
+              <>
+                <CustomInput
+                  value={field.value}
+                  onChangeText={field.onChange}
+                  onBlur={field.onBlur}
+                  keyboardType='email-address'
+                  marginTop={12}
+                  leadingIcon={
+                    <Mail
+                      size={20}
+                      color={'$neutral-700'}
+                    />
+                  }
+                />
+                <Text
+                  color={'$error-500'}
+                  marginTop={4}
+                  fontFamily={'$OpenSans'}
+                  fontSize={12}
+                >
+                  {fieldState.error?.message}
+                </Text>
+              </>
+            )}
           />
         </View>
         <View>
+          <Text
+            color={'$error-500'}
+            marginBottom={4}
+            fontFamily={'$OpenSans'}
+            fontSize={12}
+            textAlign='center'
+          >
+            {error?.response?.data.message}
+          </Text>
           <CustomButton
             text='Continue'
             size='small'
-            onPress={() => {
-              router.push({
-                pathname: '/auth/forget-password/enter-code',
-                params: { email },
-              });
-            }}
+            onPress={handleSubmit(onSubmitHandler)}
+            isPending={isPending}
+            disabled={isPending}
           />
           <AlreadyHaveAccountText>
             Already have an account?{' '}
