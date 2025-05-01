@@ -9,7 +9,6 @@ import { StyleSheet } from 'react-native';
 import useForgetPassEnterCodeMutation from './forget_pass_enter_code.mutation';
 import useCounter from '@/hooks/useCounter';
 import convertSecondsToMinutes from '@/utils/convertSecondsToMinutes.util';
-import useSignupMutation from '../../sign_up/queries/signup.mutation';
 import useForgetPassEnterEmailMutation from '../enter-email/forget_pass_enter_email.mutatuion';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
@@ -84,7 +83,6 @@ const EnterCodePage = () => {
   const { mutate, isPending, error } = useForgetPassEnterCodeMutation();
 
   function onSubmitHandler() {
-    console.log('yoyo');
     if (OTP.length === 5) {
       mutate({
         code: OTP,

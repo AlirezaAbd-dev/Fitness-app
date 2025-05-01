@@ -130,7 +130,6 @@ const LoginForm = () => {
                   />
                 )
               }
-              placeholder='Enter your password'
             />
             {fieldState.error && (
               <Text

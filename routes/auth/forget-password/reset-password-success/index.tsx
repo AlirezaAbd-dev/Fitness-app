@@ -45,7 +45,6 @@ const Description = styled(Text, {
 
 const ResetPasswordSuccessPage = () => {
   const router = useRouter();
-  const navigation = useNavigation();
 
   useInterceptBackHandler({
     onBack() {
