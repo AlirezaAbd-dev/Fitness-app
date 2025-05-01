@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'expo-router';
 
-const useForgetPassEnterEmailMutation = () => {
+const useForgetPassEnterEmailMutation = (canRedirect: boolean = true) => {
   const router = useRouter();
 
   const mutation = useMutation<
@@ -15,10 +15,11 @@ const useForgetPassEnterEmailMutation = () => {
     mutationKey: [queryKeys.FORGET_PASSWORD_ENTER_EMAIL],
     mutationFn: (data) => axiosBase.post('/auth/password/forgot', data),
     onSuccess: (_data, variables) => {
-      router.push({
-        pathname: '/auth/forget-password/enter-code',
-        params: { email: variables.email },
-      });
+      if (canRedirect)
+        router.push({
+          pathname: '/auth/forget-password/enter-code',
+          params: { email: variables.email },
+        });
     },
   });
 

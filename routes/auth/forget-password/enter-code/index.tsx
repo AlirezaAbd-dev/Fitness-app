@@ -6,6 +6,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styled, Text, View } from 'tamagui';
 import { OtpInput } from 'react-native-otp-entry';
 import { StyleSheet } from 'react-native';
+import useForgetPassEnterCodeMutation from './forget_pass_enter_code.mutation';
+import useCounter from '@/hooks/useCounter';
+import convertSecondsToMinutes from '@/utils/convertSecondsToMinutes.util';
+import useSignupMutation from '../../sign_up/queries/signup.mutation';
+import useForgetPassEnterEmailMutation from '../enter-email/forget_pass_enter_email.mutatuion';
 
 const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
@@ -50,7 +55,7 @@ const EmailEntered = styled(Text, {
   marginTop: 4,
 });
 
-const AlreadyHaveAccountText = styled(Text, {
+const ResendCode = styled(Text, {
   marginTop: 24,
   color: '$text-25',
   textAlign: 'center',
@@ -63,11 +68,30 @@ const OTPContainer = styled(View, {
 });
 
 const EnterCodePage = () => {
+  const router = useRouter();
+
   const [OTP, setOTP] = useState('');
 
-  const { email: EmailPassed } = useLocalSearchParams();
+  const [counter, setCounter] = useCounter(120);
 
-  const router = useRouter();
+  const { email } = useLocalSearchParams();
+
+  const {
+    mutateAsync,
+    isPending: isResendPending,
+    error: resendError,
+  } = useForgetPassEnterEmailMutation(false);
+  const { mutate, isPending, error } = useForgetPassEnterCodeMutation();
+
+  function onSubmitHandler() {
+    console.log('yoyo');
+    if (OTP.length === 5) {
+      mutate({
+        code: OTP,
+        email: email as string,
+      });
+    }
+  }
 
   return (
     <StyledSafeAreaView>
@@ -88,7 +112,7 @@ const EnterCodePage = () => {
           </IconContainer>
           <Title>Verification code</Title>
           <Description>Please enter the OTP sent to</Description>
-          <EmailEntered>{EmailPassed}</EmailEntered>
+          <EmailEntered>{email}</EmailEntered>
 
           <OTPContainer>
             <OtpInput
@@ -103,18 +127,56 @@ const EnterCodePage = () => {
                 pinCodeTextStyle: OTPStyles.pinCodeTextStyle,
                 focusStickStyle: OTPStyles.focusStickStyle,
               }}
+              onFilled={(text) => {
+                mutate({
+                  code: text,
+                  email: email as string,
+                });
+              }}
             />
           </OTPContainer>
         </View>
         <View>
+          <Text
+            color={'$error-500'}
+            marginBottom={4}
+            fontFamily={'$OpenSans'}
+            fontSize={12}
+            textAlign='center'
+          >
+            {resendError?.response?.data.message ||
+              error?.response?.data.message}
+          </Text>
           <CustomButton
             text='Next'
             size='small'
             onPress={() => {
-              router.push('/auth/forget-password/reset-password');
+              onSubmitHandler();
             }}
+            disabled={isPending || OTP.length !== 5 || isResendPending}
+            isPending={isPending || isResendPending}
           />
-          <AlreadyHaveAccountText>Resend Code (1:59)</AlreadyHaveAccountText>
+          {counter > 0 ? (
+            <ResendCode>
+              Resend Code ({convertSecondsToMinutes(counter)})
+            </ResendCode>
+          ) : (
+            <ResendCode>
+              Did not receive the code?{' '}
+              <ResendCode
+                color={'#E1F411'}
+                onPress={async () => {
+                  await mutateAsync({
+                    email: email as string,
+                  });
+
+                  setCounter(120);
+                }}
+              >
+                Resend code
+              </ResendCode>
+            </ResendCode>
+          )}
         </View>
       </Section>
     </StyledSafeAreaView>
