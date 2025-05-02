@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ActivityIndicator, GestureResponderEvent } from 'react-native';
 import { styled, Text, View, Button as TamaguiButton } from 'tamagui';
 
@@ -14,10 +14,9 @@ interface ButtonProps {
   iconPosition?: 'left' | 'right';
   width?: any;
   disabled?: boolean;
-  isPending?: boolean; // <-- Added isPending prop
+  isPending?: boolean;
 }
 
-// Styled Components
 const StyledButton = styled(TamaguiButton, {
   width: '100%',
   borderRadius: 16,
@@ -78,39 +77,44 @@ const StyledText = styled(Text, {
   } as const,
 });
 
-// Component
-const CustomButton: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  size = 'medium',
-  text,
-  onPress,
-  icon,
-  iconPosition = 'left',
-  width = '100%',
-  disabled = false,
-  isPending = false, // <-- Default value for isPending
-}) => {
-  return (
-    <StyledButton
-      variant={variant}
-      size={size}
-      onPress={onPress}
-      width={width}
-      disabled={disabled || isPending} // disable the button if pending
-    >
-      {isPending ? (
-        <ActivityIndicator
-          color={variant === 'secondary' ? 'white' : 'black'}
-        />
-      ) : (
-        <>
-          {icon && iconPosition === 'left' && <View>{icon}</View>}
-          <StyledText variant={variant}>{text}</StyledText>
-          {icon && iconPosition === 'right' && <View>{icon}</View>}
-        </>
-      )}
-    </StyledButton>
-  );
-};
+const CustomButton = forwardRef<any, ButtonProps>(
+  (
+    {
+      variant = 'primary',
+      size = 'medium',
+      text,
+      onPress,
+      icon,
+      iconPosition = 'left',
+      width = '100%',
+      disabled = false,
+      isPending = false,
+    },
+    ref,
+  ) => {
+    return (
+      <StyledButton
+        ref={ref}
+        variant={variant}
+        size={size}
+        onPress={onPress}
+        width={width}
+        disabled={disabled || isPending}
+      >
+        {isPending ? (
+          <ActivityIndicator
+            color={variant === 'secondary' ? 'white' : 'black'}
+          />
+        ) : (
+          <>
+            {icon && iconPosition === 'left' && <View>{icon}</View>}
+            <StyledText variant={variant}>{text}</StyledText>
+            {icon && iconPosition === 'right' && <View>{icon}</View>}
+          </>
+        )}
+      </StyledButton>
+    );
+  },
+);
 
 export default CustomButton;

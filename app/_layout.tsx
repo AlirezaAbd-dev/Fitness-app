@@ -3,8 +3,7 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -12,7 +11,6 @@ import { TamaguiProvider, Theme } from 'tamagui';
 import { QueryProvider } from '@/providers/query.provider';
 
 import config from '../tamagui.config';
-import storageKeys from '@/constants/StorageKeys.constants';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,30 +24,13 @@ export default function RootLayout() {
     'OpenSans-ExtraBold': require('../assets/fonts/OpenSans-ExtraBold.ttf'),
   });
 
-  const [appReady, setAppReady] = useState(false);
-  const [initialRoute, setInitialRoute] = useState<string | null>(null);
-
   useEffect(() => {
-    const prepare = async () => {
-      const hasSeenWelcome = await AsyncStorage.getItem(
-        storageKeys.HAS_SEEN_WELCOME,
-      );
-      setInitialRoute(hasSeenWelcome ? 'get-started' : 'welcome/welcome');
-      setAppReady(true);
-    };
-
     if (loaded) {
-      prepare();
+      SplashScreen.hideAsync();
     }
   }, [loaded]);
 
-  useEffect(() => {
-    if (loaded && appReady) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, appReady]);
-
-  if (!loaded || !appReady || !initialRoute) {
+  if (!loaded) {
     return <View style={{ flex: 1, backgroundColor: 'white' }} />;
   }
 
@@ -58,7 +39,7 @@ export default function RootLayout() {
       <TamaguiProvider config={config}>
         <Theme name={colorScheme}>
           <Stack
-            initialRouteName={initialRoute}
+            initialRouteName={'index'}
             screenOptions={{ headerShown: false }}
           >
             <Stack.Screen name='welcome/welcome' />
@@ -80,7 +61,7 @@ export default function RootLayout() {
             />
             <Stack.Screen name='auth/login' />
             <Stack.Screen name='auth/sign-up' />
-            <Stack.Screen name='+not-found' />
+            {/* <Stack.Screen name='+not-found' /> */}
           </Stack>
           <StatusBar style='dark' />
         </Theme>

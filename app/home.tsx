@@ -6,11 +6,19 @@ import { Text } from 'tamagui';
 const home = () => {
   useEffect(() => {
     (async () => {
-      console.log(await AsyncStorage.getItem(storageKeys.TOKEN));
+      await AsyncStorage.getItem(storageKeys.TOKEN);
     })();
   }, []);
 
-  return <Text fontSize={30}>Welcome</Text>;
+  return (
+    <Text
+      fontSize={30}
+      textAlign='center'
+      marginTop={100}
+    >
+      Welcome
+    </Text>
+  );
 };
 
 export default home;

@@ -19,6 +19,7 @@ const useSignupVerifyMutation = () => {
     mutationFn: (data) => axiosBase.post('/auth/register/verify', data),
     onSuccess: async (data) => {
       await AsyncStorage.setItem(storageKeys.TOKEN, data.data.data.token);
+      router.dismissAll();
       router.replace('/home');
     },
   });

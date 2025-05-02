@@ -1,7 +1,7 @@
 import CustomButton from '@/components/ui/customButton';
 import { useInterceptBackHandler } from '@/hooks/useInterceptBackHandler';
 import { CheckCircle2 } from '@tamagui/lucide-icons';
-import { useNavigation, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styled, Text, View } from 'tamagui';

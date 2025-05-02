@@ -2,7 +2,7 @@ import CheckboxWithLabel from '@/components/ui/checkbox';
 import CustomButton from '@/components/ui/customButton';
 import CustomInput from '@/components/ui/customInput';
 import { Eye, EyeOff, KeyRound, Mail } from '@tamagui/lucide-icons';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Text, View, styled } from 'tamagui';
 import { Controller, useForm } from 'react-hook-form';
@@ -39,6 +39,8 @@ const ForgetPasswordText = styled(Text, {
 });
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const [hiddenPassword, setHiddenPassword] = useState(true);
 
   const { mutate, data, isPending, error } = useLoginMutation();
@@ -55,6 +57,8 @@ const LoginForm = () => {
     (async () => {
       if (!isPending && data) {
         await AsyncStorage.setItem(storageKeys.TOKEN, data.data.data.token);
+        router.dismissAll();
+        router.replace('/home');
       }
     })();
   }, [data, isPending]);
@@ -78,7 +82,6 @@ const LoginForm = () => {
                 />
               }
               keyboardType='email-address'
-              placeholder='Enter your email'
             />
             {fieldState.error && (
               <Text
