@@ -40,28 +40,20 @@ export default function RootLayout() {
         <Theme name={colorScheme}>
           <Stack
             initialRouteName={'index'}
-            screenOptions={{ headerShown: false }}
+            screenOptions={{ headerShown: false, animation: 'simple_push' }}
           >
             <Stack.Screen name='welcome/welcome' />
-            <Stack.Screen
-              name='welcome/welcome-2'
-              options={{ animation: 'simple_push' }}
-            />
-            <Stack.Screen
-              name='welcome/welcome-3'
-              options={{ animation: 'simple_push' }}
-            />
-            <Stack.Screen
-              name='(questions)'
-              options={{ animation: 'simple_push' }}
-            />
-            <Stack.Screen
-              name='get-started'
-              options={{ animation: 'simple_push' }}
-            />
+            <Stack.Screen name='welcome/welcome-2' />
+            <Stack.Screen name='welcome/welcome-3' />
+            <Stack.Screen name='(questions)' />
+            <Stack.Screen name='get-started' />
             <Stack.Screen name='auth/login' />
             <Stack.Screen name='auth/sign-up' />
-            {/* <Stack.Screen name='+not-found' /> */}
+            <Stack.Screen name='auth/sign-up-verify' />
+            <Stack.Screen name='auth/forget-password/enter-email' />
+            <Stack.Screen name='auth/forget-password/enter-code' />
+            <Stack.Screen name='auth/forget-password/reset-password' />
+            <Stack.Screen name='auth/forget-password/reset-password-success' />
           </Stack>
           <StatusBar style='dark' />
         </Theme>

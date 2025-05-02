@@ -15,7 +15,7 @@ export default function Index() {
         const hasSeenWelcome = await AsyncStorage.getItem(
           storageKeys.HAS_SEEN_WELCOME,
         );
-        console.log(hasSeenWelcome);
+
         if (hasSeenWelcome === 'true') {
           router.replace('/get-started');
         } else {
