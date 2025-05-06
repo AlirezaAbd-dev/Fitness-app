@@ -44,6 +44,7 @@ const CenteredContent = styled(View, {
 
 const TitleText = styled(Text, {
   fontFamily: '$OpenSans-SemiBold',
+  color: '$text-1000',
   fontSize: 18,
 });
 
@@ -54,6 +55,7 @@ const DescriptionText = styled(Text, {
   lineHeight: 24,
   textAlign: 'center',
   paddingHorizontal: 10,
+  color: '$text-1000',
 });
 
 const Footer = styled(View, {

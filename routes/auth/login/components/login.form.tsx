@@ -153,7 +153,7 @@ const LoginForm = () => {
           size={24}
           label='Remember me'
         />
-        <Link href={'/auth/forget-password/enter-email'}>
+        <Link href={'/(auth)/forget-password/enter-email'}>
           <ForgetPasswordText>Forget password?</ForgetPasswordText>
         </Link>
       </LoginOptionsContainer>

@@ -49,12 +49,11 @@ const SignUpForm = () => {
 
   const [hiddenPassword, setHiddenPassword] = useState(true);
 
-  const { mutate, isPending, data, error } = useSignupMutation();
+  const { mutate, isPending, error } = useSignupMutation();
 
   const {
     control,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<SignUpValidationType>({
     resolver: zodResolver(signUpValidation),

@@ -16,7 +16,7 @@ const useSignupMutation = (canRedirect = true) => {
     mutationFn: (data) => axiosBase.post('/auth/register', data),
     onSuccess(_data, variables) {
       if (canRedirect) {
-        router.push({ pathname: '/auth/sign-up-verify', params: variables });
+        router.push({ pathname: '/(auth)/sign-up-verify', params: variables });
       }
     },
   });

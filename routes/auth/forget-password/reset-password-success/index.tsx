@@ -49,7 +49,7 @@ const ResetPasswordSuccessPage = () => {
   useInterceptBackHandler({
     onBack() {
       router.dismissAll();
-      router.dismissTo('/auth/login');
+      router.dismissTo('/(auth)/login');
     },
   });
 
@@ -74,7 +74,7 @@ const ResetPasswordSuccessPage = () => {
             size='small'
             onPress={() => {
               router.dismissAll();
-              router.dismissTo('/auth/login');
+              router.dismissTo('/(auth)/login');
             }}
           />
         </View>

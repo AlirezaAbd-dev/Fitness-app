@@ -17,7 +17,7 @@ const useForgetPassEnterEmailMutation = (canRedirect: boolean = true) => {
     onSuccess: (_data, variables) => {
       if (canRedirect)
         router.push({
-          pathname: '/auth/forget-password/enter-code',
+          pathname: '/(auth)/forget-password/enter-code',
           params: { email: variables.email },
         });
     },

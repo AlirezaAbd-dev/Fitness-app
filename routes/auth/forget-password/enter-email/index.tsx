@@ -151,7 +151,7 @@ const EnterEmailPage = () => {
             <AlreadyHaveAccountText
               color={'#6B9FFF'}
               onPress={() => {
-                router.push('/auth/login');
+                router.push('/(auth)/login');
               }}
             >
               Log in

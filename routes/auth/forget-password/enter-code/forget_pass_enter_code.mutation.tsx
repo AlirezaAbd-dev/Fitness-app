@@ -17,7 +17,7 @@ const useForgetPassEnterCodeMutation = () => {
     mutationFn: (data) => axiosBase.post('/auth/password/verify', data),
     onSuccess(_data, variables) {
       router.push({
-        pathname: '/auth/forget-password/reset-password',
+        pathname: '/(auth)/forget-password/reset-password',
         params: { email: variables.email },
       });
     },
